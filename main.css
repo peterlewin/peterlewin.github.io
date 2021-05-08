@@ -94,7 +94,8 @@ h2 {
   float:right;
   right:0px;
   top:0px;
-  
+  padding-left: 3px;
+  padding-right: 3px;
 
 }
 
@@ -112,6 +113,8 @@ h2 {
   left:0px;
   top:0px;
   margin:50px ;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .border {
@@ -162,7 +165,8 @@ h2 {
   font-size: larger;
   text-decoration: none;
   max-width:fit-content;
- 
+  padding-left: 15px;
+  padding-right: 15px;
   position: absolute;
   right: 0;
   
