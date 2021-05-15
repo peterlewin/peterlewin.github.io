@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>E-Solutions</title>
+    <title>E-Solutions Contact page</title>
     <link rel="stylesheet" type="text/css" href="main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-    
+    <div class="topnav" id="myTopnav">
     <div class="fixed-header">
         <div class="container">
             <nav>
-                <a href="index.html"><img src="logow.png" alt=""></a>
+                <a href="index.html"><img src="images/logow.png" alt=""></a>
                 <a href="services.html">Services</a>
                 <a href="news.html">News</a>
                 <a href="about.html">About us</a>
@@ -18,44 +20,134 @@
             </nav>
         </div>
     </div>   
-    <div class="fixed-footer">
-        <div class="container">Copyright &copy; 2021 E-Commerce Solutions</div>        
-    </div>
+</div>
+
 
     <h2 class = "stitle">Contact us!</h2>
     <br>
     <br>
     <p class = "border"><br>Please don't hesitate to contact us regarding any queries you might have, fill in the form below:<br><br></p>
     <br>
-    <div class="container2">
-        <form action="action_page.php">
+    <div class="imagebg"></div>
+<div class="container2">
+        <form role="form" method="post" id="reused_form">
+        
+          <label for="name">First Name:</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="First name" required>
       
-          <label for="fname">First Name</label>
-          <input type="text" id="fname" name="firstname" placeholder="First name..">
+          <label for="lname">Last Name:</label>
+          <input type="text" id="lname" name="lastname" placeholder="Last name">
       
-          <label for="lname">Last Name</label>
-          <input type="text" id="lname" name="lastname" placeholder="Last name..">
-      
-          <label for="country">Country</label>
-          <select id="country" name="country">
-            <option value="australia">Australia</option>
-            <option value="UK">UK</option>
-            <option value="usa">USA</option>
+          <label for="email">Email:</label>
+          <input type="text" class="form-control"id="email" name="email"placeholder= "Example@gmail.com" required>
           </select>
       
-          <label for="subject">Subject</label>
-          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-      
-          <input type="submit" value="Submit">
-      
+          <label for="comments">Subject</label>
+          <textarea class="form-control" id="comments" name="comments" placeholder="Write something.." maxlength="6000" rows="7"></textarea>
+      <div class ="row">
+          <button type="submit" class="btn">Post</button>
+    </div>
+</div>
+
+
         </form>
+        
+    <div id="success_message" style="width:100%; height:100%; display:none; ">
+        <h3>Posted your feedback successfully!</h3>
+    </div>
+    <div id="error_message"
+            style="width:100%; height:100%; display:none; ">
+                <h3>Error</h3>
+                Sorry there was an error sending your form.
       </div>
+      
+      <div class="fixed-footer">
+        <div class="container">Copyright &copy; 2021 E-Commerce Solutions</div>        
+    </div>
 
 
     <br>
     <br>
     <br>
 
+
+    <script>
+        $(function()
+        {
+            function after_form_submitted(data)
+            {
+                if(data.result == 'success')
+                {
+                    $('form#reused_form').hide();
+                    $('#success_message').show();
+                    $('#error_message').hide();
+                }
+                else
+                {
+                    $('#error_message').append('<ul></ul>');
+        
+                    jQuery.each(data.errors,function(key,val)
+                    {
+                        $('#error_message ul').append('<li>'+key+':'+val+'</li>');
+                    });
+                    $('#success_message').hide();
+                    $('#error_message').show();
+        
+                    //reverse the response on the button
+                    $('button[type="button"]', $form).each(function()
+                    {
+                        $btn = $(this);
+                        label = $btn.prop('orig_label');
+                        if(label)
+                        {
+                            $btn.prop('type','submit' );
+                            $btn.text(label);
+                            $btn.prop('orig_label','');
+                        }
+                    });
+        
+                }//else
+            }
+        
+            $('#reused_form').submit(function(e)
+              {
+                e.preventDefault();
+        
+                $form = $(this);
+                //show some response on the button
+                $('button[type="submit"]', $form).each(function()
+                {
+                    $btn = $(this);
+                    $btn.prop('type','button' );
+                    $btn.prop('orig_label',$btn.text());
+                    $btn.text('Sending ...');
+                });
+        
+        
+                            $.ajax({
+                        type: "POST",
+                        url: 'handler.php',
+                        data: $form.serialize(),
+                        success: after_form_submitted,
+                        dataType: 'json'
+                    });
+        
+              });
+        });
+        </script>
+
+
+
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+        </script>
 
 
 </body>
