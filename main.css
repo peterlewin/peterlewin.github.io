@@ -202,7 +202,7 @@ h2 {
     color: rgb(210, 105, 30);
     border-radius: 3px ;
     background-color:rgb(255, 248, 220, 0.8);
-    font-size: larger;
+    font-size: x-large;
 }
 
 .stitle4 {
@@ -212,7 +212,7 @@ h2 {
   color: rgb(210, 105, 30);
   border-radius: 3px ;
   background-color:rgb(255, 248, 220, 0.9);
-  font-size: large;
+  font-size: larger;
   position: relative;
   margin-top:-18px;
   float:right;
@@ -230,7 +230,7 @@ h2 {
   color: rgb(210, 105, 30);
   border-radius: 3px ;
   background-color:rgb(255, 248, 220, 0.8);
-  font-size: large;
+  font-size: larger;
   position: relative;
   margin-top:-18px;
   float:left;
