@@ -220,16 +220,25 @@ h2 {
   border-radius: 3px ;
   background-color:rgb(255, 248, 220, 0.9);
   font-size: larger;
-  position: relative;
-  margin-top:-18px;
-  float:right;
-  right:0px;
-  top:0px;
-  padding-left: 3px;
-  padding-right: 3px;
+  position: absolute;
+  right: 1%;
+  top: 100%;
 
 }
 
+.stitle42 {
+ 
+  text-align: center;
+  font-family: "Tahoma";
+  color: rgb(210, 105, 30);
+  border-radius: 3px ;
+  background-color:rgb(255, 248, 220, 0.9);
+  font-size: larger;
+  position: absolute;
+  right: 1%;
+  top: 134%;
+
+}
 .stitle5 {
  
   text-align: center;
@@ -286,7 +295,8 @@ h2 {
   background-color:rgb(210, 105, 30, 0.8);
   font-size: larger;
   text-decoration: none;
-  max-width:fit-content;
+  max-width:50%;
+  padding-bottom: 25px;
 }
 
 .border4 {
@@ -302,7 +312,34 @@ h2 {
   padding-left: 15px;
   padding-right: 15px;
   position: absolute;
-  right: 0;
+  right: 1%;
+  top: 105%;
+  
+}
+
+.border42 {
+  text-align: left;
+  font-family: "Tahoma";
+  color: rgb(255, 248, 220);
+  border: 1px outset antiquewhite;
+  border-radius: 5px ;
+  background-color:rgb(210, 105, 30, 0.8);
+  font-size: larger;
+  text-decoration: none;
+  max-width:fit-content;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: absolute;
+  right: 1%;
+  top: 139%;
+  
+}
+
+.bg1 {
+  background-color: rgb(255, 248, 220, 0.3);
+  border: 1px outset antiquewhite;
+  border-radius: 5px;
+  padding: 25px;
   
 }
 
