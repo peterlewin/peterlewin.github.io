@@ -339,7 +339,9 @@ h2 {
   background-color: rgb(255, 248, 220, 0.3);
   border: 1px outset antiquewhite;
   border-radius: 5px;
-  padding: 25px;
+  padding-top: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
   
 }
 
