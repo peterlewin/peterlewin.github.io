@@ -362,12 +362,13 @@ h2 {
   padding-right:45px;
   padding-top:55px;
   z-index: -999;
- grid-template-columns: auto minmax(2,2fr);
+  grid-template-columns: auto minmax(2,2fr);
   overflow: auto;
   display: grid;
   grid-row-gap: 10rem;
   grid-column-gap: 4rem;
-  
+  max-width: 90%;
+  margin: auto;
 
   
 }
