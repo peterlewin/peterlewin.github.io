@@ -91,12 +91,12 @@
     .fixed-footer{
         bottom: 0;
     }
-    .container{
+    /*.container{
         text-align: center;
         width: 80%;
-        /* Center the DIV horizontally margin: 0 auto; */
-        justify-content: space-between;
-    }
+        /*Center the DIV horizontally 
+        justify-content: space-between;*/
+    
     nav a{
         color:rgb(255, 248, 220);
         text-decoration: none;
@@ -151,7 +151,7 @@
       width: 55%;
   }
     
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 1100px) {
       .topnav a:not(:first-child) {display: none;}
       .topnav a.icon {
         float: right;
@@ -159,7 +159,7 @@
       }
     }
     
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 1100px) {
       .topnav.responsive {position: relative;}
       .topnav.responsive .icon {
         position: absolute;
