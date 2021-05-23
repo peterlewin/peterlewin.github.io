@@ -207,16 +207,36 @@ h2 {
 }
 
 .stitle4 {
- 
   text-align: center;
   font-family: "Tahoma";
   color: rgb(210, 105, 30);
   border-radius: 3px ;
-  background-color:rgb(255, 248, 220, 0.9);
+  background-color:rgb(255, 248, 220, 0.8);
   font-size: larger;
-  position: absolute;
-  right: 1%;
-  top: 100%;
+  position: relative;
+
+ 
+  right:0px;
+  padding: 1rem;
+  height: 4rem;
+
+}
+
+.stitle43 {
+  text-align: center;
+  font-family: "Tahoma";
+  color: rgb(210, 105, 30);
+  border-radius: 3px ;
+  background-color:rgb(255, 248, 220, 0.8);
+  font-size: larger;
+  position: relative;
+  top: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+ 
+  padding: 1rem;
+  height: 4rem;
 
 }
 
@@ -228,9 +248,12 @@ h2 {
   border-radius: 3px ;
   background-color:rgb(255, 248, 220, 0.9);
   font-size: larger;
-  position: absolute;
-  right: 1%;
-  top: 134%;
+  position: relative;
+
+  float:right;
+  right:0px;
+  padding: 1rem;
+  height: 4rem;
 
 }
 .stitle5 {
@@ -241,14 +264,11 @@ h2 {
   border-radius: 3px ;
   background-color:rgb(255, 248, 220, 0.8);
   font-size: larger;
+  
+  padding: 1rem;
+  height: 4rem;
+  z-index: 998;
   position: relative;
-  margin-top:-18px;
-  float:left;
-  left:0px;
-  top:0px;
-  margin:50px ;
-  padding-left: 3px;
-  padding-right: 3px;
 }
 
 .border {
@@ -289,8 +309,13 @@ h2 {
   background-color:rgb(210, 105, 30, 0.8);
   font-size: larger;
   text-decoration: none;
-  max-width:50%;
-  padding-bottom: 25px;
+  overflow: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  position: relative;
+  
 }
 
 .border4 {
@@ -302,12 +327,12 @@ h2 {
   background-color:rgb(210, 105, 30, 0.8);
   font-size: larger;
   text-decoration: none;
-  max-width:fit-content;
+  overflow: auto;
   padding-left: 15px;
   padding-right: 15px;
-  position: absolute;
-  right: 1%;
-  top: 105%;
+  padding-bottom: 15px;
+  padding-top: 15px;
+
   
 }
 
@@ -320,23 +345,35 @@ h2 {
   background-color:rgb(210, 105, 30, 0.8);
   font-size: larger;
   text-decoration: none;
-  max-width:fit-content;
-  padding-left: 15px;
-  padding-right: 15px;
-  position: absolute;
-  right: 1%;
-  top: 139%;
+  
+
+  
+ 
+
+  
   
 }
 
 .bg1 {
-  background-color: rgb(255, 248, 220, 0.3);
+  background-color: rgb(255, 248, 220, 0.35);
   border: 1px outset antiquewhite;
   border-radius: 5px;
-  padding-top: 25px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left:45px;
+  padding-right:45px;
+  padding-top:55px;
+  z-index: -999;
+ grid-template-columns: auto minmax(2,2fr);
+  overflow: auto;
+  display: grid;
+  grid-row-gap: 10rem;
+  grid-column-gap: 4rem;
   
+
+  
+}
+
+@media (min-width: 1200px) {
+  .bg1 { grid-template-columns: repeat(2, 2fr); }
 }
 
 
