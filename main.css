@@ -45,10 +45,7 @@
         color:rgb(255, 248, 220);
         font-size: larger;
         font-family: "Tahoma";
-        align-items: flex-start;
-        flex: 1; /* Equal priorities or sp */
         z-index: 999;
-        text-align: center;
    
     }
     .fixed-header2{
@@ -62,10 +59,7 @@
       align-items: flex-start;
       flex: 1;
       z-index: 999;
-      text-align: center;
-      text-align: left;
-      justify-content: space-between;
-      z-index: 999;
+
  
   }
     .fixed-footer{
