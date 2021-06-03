@@ -461,8 +461,8 @@ input[type=text], select, textarea {
   padding: 2px;
   position: absolute;
   top: 0;
-  right: 8%;
-  font-size: x-large;
+  right: 4%;
+  font-size: 28px;
   
 }
 
