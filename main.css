@@ -419,6 +419,7 @@ input[type=text], select, textarea {
     padding: 20px;
     max-width:fit-content;
     margin:auto;
+    border-radius: 10px;
     
   }
 
