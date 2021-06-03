@@ -465,6 +465,17 @@ input[type=text], select, textarea {
   font-size: x-large;
   
 }
+
+.numbertext3 {
+  color: rgb(255, 255, 255);
+  padding: 4px;
+  position: absolute;
+  bottom: 0;
+  right: 25%;
+  font-size: xx-large;
+
+  
+}
 /* The dots/bullets/indicators */
 .dot2 {
   cursor: pointer;
