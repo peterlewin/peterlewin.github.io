@@ -417,6 +417,8 @@ input[type=text], select, textarea {
     border-radius: 5px;
     background-color:antiquewhite;
     padding: 20px;
+    max-width:fit-content;
+    margin:auto;
     
   }
 
