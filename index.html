@@ -44,18 +44,70 @@
     For clients that require it, we facilitate implementing  and utilising an IT Network that meets your needs.<br><br>
 </p>
 
-    <img class = "stitle" src="c1.png"><img class = "stitle2" src="c2.png">
+    <img class = "stitle" src="c1.png"><img class = "stitle2" src="images/c2.png"><div class="slideshow-container2">
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+          <div class="numbertext"></div>
+          <img src="crypto2.jpeg" style="width:100%">
+          <div class="text"></div>
+        </div>
+      
+        <div class="mySlides fade">
+          <div class="numbertext2">Make working from home less work</div>
+          <img src="about2.jpeg" style="width:100%">
+          <div class="text"></div>
+        </div>
+      
+        <div class="mySlides fade">
+          <div class="numbertext"></div>
+          <img src="network1.jpeg" style="width:100%">
+          <div class="text"></div>
+        </div>
+      
+      </div>
+      
+      <div style="float:right; position: relative; margin-left: 100%; right:100px; bottom:35px;">
+        <span class="dot2"></span> 
+        <span class="dot2"></span> 
+        <span class="dot2"></span> 
+      </div>
     <p class = border2><br> We can help answer your questions regarding
      the new payment <br><br> method and what you need to know about how it might affect your<br><br>business. <br><br></p>
 
+    
+    
+      
 
+    
+      <script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dot2s = document.getElementsByClassName("dot2");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dot2s.length; i++) {
+    dot2s[i].className = dot2s[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dot2s[slideIndex-1].className += " active";
+  setTimeout(showSlides, 3400); // Change image every 2 seconds
+}
+</script>
 
 
       </div>
-    
+    </div>
+</div>
 
-     
-
+ 
 <a class = "border2" href="contact.html" >Contact</a>
 
 
