@@ -483,7 +483,7 @@ input[type=text], select, textarea {
   top: 20px;
   max-height: fit-content;
   box-shadow: 5px 10px  rgb(210, 105, 30, 0.8);
-  
+  border-radius: 25px;
 }
 
 @media (max-width: 1200px) {
@@ -496,9 +496,9 @@ input[type=text], select, textarea {
   color: rgb(2, 1, 1);
   padding: 2px;
   position: absolute;
-  top: 0;
-  right: 4%;
-  font-size: 28px;
+  top: 1;
+  right: 10%;
+  font-size: 24px;
   
 }
 
