@@ -140,7 +140,43 @@
               });
         });
         </script>
-
+<div>
+    <div id="smart-button-container">
+        <div style="text-align: center;">
+          <div id="paypal-button-container"></div>
+        </div>
+      </div>
+    <script src="https://www.paypal.com/sdk/js?client-id=AYttOrvXxPt5MpySBf2TE1wONF8qmK_Ew1W7Q2ld-kra-zDS8MOJKa4sCnKY3yQyXzoBU10-KSph9kfL&currency=GBP" data-sdk-integration-source="button-factory"></script>
+    <script>
+      function initPayPalButton() {
+        paypal.Buttons({
+          style: {
+            shape: 'rect',
+            color: 'gold',
+            layout: 'vertical',
+            label: 'paypal',
+            
+          },
+  
+          createOrder: function(data, actions) {
+            return actions.order.create({
+              purchase_units: [{"amount":{"currency_code":"GBP","value":90,"breakdown":{"item_total":{"currency_code":"GBP","value":75},"shipping":{"currency_code":"GBP","value":0},"tax_total":{"currency_code":"GBP","value":15}}}}]
+            });
+          },
+  
+          onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+              alert('Transaction completed by ' + details.payer.name.given_name + '!');
+            });
+          },
+  
+          onError: function(err) {
+            console.log(err);
+          }
+        }).render('#paypal-button-container');
+      }
+      initPayPalButton();
+    </script>
 
 
     <script>
