@@ -73,7 +73,56 @@
         We can help clients <br> 'mint' NFTs, a form of virtual property that is used by artists to
         verifiably sell their original work.<br><br>
     </p>
-
+    <br>
+    <h4 class = "stitle3" >Payments</h4>
+    <p class ="border" style="padding:25px; margin: auto; max-width: fit-content;"><br>At E-commerce Solutions, our functional services to get you started are completely free!
+        <br><br>
+        For ongoing advertisement campaigns there will be a small fee, with the option to pay over time
+        <br><br>
+        You always have the option to invest more into advertisement, one of the most effective ways to grow your company
+        <br><br>
+        For £90 we will run 3 advertisement campaigns over a period of three months to boost your business
+        <br><br>
+        Aswell as managing your website remotely & ensuring any potential issues with the network are resolved
+        <br><br>
+        </p><br>
+    <div>
+        <div id="smart-button-container">
+            <div style="text-align: center;">
+              <div id="paypal-button-container"></div>
+            </div>
+          </div>
+        <script src="https://www.paypal.com/sdk/js?client-id=AYttOrvXxPt5MpySBf2TE1wONF8qmK_Ew1W7Q2ld-kra-zDS8MOJKa4sCnKY3yQyXzoBU10-KSph9kfL&currency=GBP" data-sdk-integration-source="button-factory"></script>
+        <script>
+          function initPayPalButton() {
+            paypal.Buttons({
+              style: {
+                shape: 'rect',
+                color: 'gold',
+                layout: 'vertical',
+                label: 'paypal',
+                
+              },
+      
+              createOrder: function(data, actions) {
+                return actions.order.create({
+                  purchase_units: [{"amount":{"currency_code":"GBP","value":90,"breakdown":{"item_total":{"currency_code":"GBP","value":75},"shipping":{"currency_code":"GBP","value":0},"tax_total":{"currency_code":"GBP","value":15}}}}]
+                });
+              },
+      
+              onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                  alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                });
+              },
+      
+              onError: function(err) {
+                console.log(err);
+              }
+            }).render('#paypal-button-container');
+          }
+          initPayPalButton();
+        </script>
     <br>
     <a class = "border2" href="contact.html" >Contact</a>
 
