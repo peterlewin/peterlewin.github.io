@@ -234,13 +234,12 @@ h2 {
   color: rgb(210, 105, 30);
   border-radius: 3px ;
   background-color:rgb(255, 248, 220, 0.8);
-  font-size: larger;
+  font-size: x-large;
   position: relative;
   top: 0px;
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 15px;
- 
   padding: 1rem;
   height: 4rem;
 
@@ -253,13 +252,10 @@ h2 {
   color: rgb(210, 105, 30);
   border-radius: 3px ;
   background-color:rgb(255, 248, 220, 0.9);
-  font-size: larger;
+  font-size: x-large;
   position: relative;
-
-  float:right;
-  right:0px;
   padding: 1rem;
-  height: 4rem;
+  height: 4.15rem;
 
 }
 .stitle5 {
@@ -313,7 +309,7 @@ h2 {
   border: 1px outset antiquewhite;
   border-radius: 5px ;
   background-color:rgb(210, 105, 30, 0.8);
-  font-size: larger;
+  font-size: 21px;
   text-decoration: none;
   overflow: auto;
   padding-left: 15px;
@@ -331,7 +327,7 @@ h2 {
   border: 1px outset antiquewhite;
   border-radius: 5px ;
   background-color:rgb(210, 105, 30, 0.8);
-  font-size: larger;
+  font-size: 21px;
   text-decoration: none;
   overflow: auto;
   padding-left: 15px;
@@ -403,13 +399,13 @@ h2 {
   padding-left:45px;
   padding-right:45px;
   padding-top:55px;
-  padding-bottom: 5px;
+  padding-bottom: 15px;
   z-index: -999;
   grid-template-columns: auto minmax(2,2fr);
   overflow: auto;
   display: grid;
   grid-row-gap: 10rem;
-  grid-column-gap: 4rem;
+  grid-column-gap: 2rem;
   max-width: 90%;
   margin: auto;
 
