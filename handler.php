@@ -1,26 +1,28 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-/*
-Tested working with PHP5.4 and above (including PHP 7 )
+$con=mysqli_connect('localhost', 'root');
+if($con){
+    echo "Connection succesful";
+}
 
- */
-require_once './vendor/autoload.php';
+mysqli_select_db($con, 'web');
+$name=$_POST['name'];
+$lastname=$_POST['lastname'];
+$email=$_POST['email'];
+$comments=$_POST['comments'];
 
-use FormGuide\Handlx\FormHandler;
+// $comment_length = strlen($comment);
 
-
-$pp = new FormHandler();
-
-$validator = $pp->getValidator();
-$validator->fields(['name','email'])->areRequired()->maxLength(50);
-$validator->field('email')->isEmail();
-$validator->field('comments')->maxLength(6000);
-
-
-
-
-$pp->sendEmailTo('peterlewin95@gmail.com'); // ← Your email here
-
-echo $pp->process($_POST);
+if($comment_length > 100)
+{
+    header("location:contact.html?error=1");
+}
+else
+{
+        $query="INSERT into web1(name,lastname,email,comments)
+        values('$name','$lastname','$email','$comments')";
+        echo "$query";
+        mysqli_query($con,$query);
+        header("location:contact.html");
+        echo "$name", "$lastname", "$email", "$comments";
+    }
+?>
