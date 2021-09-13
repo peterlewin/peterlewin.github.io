@@ -445,13 +445,13 @@ h2 {
   border-radius: 5px;
   padding-left:45px;
   padding-right:45px;
-  padding-top:55px;
-  padding-bottom: 15px;
+  padding-top:45px;
+  padding-bottom: 0px;
   z-index: -999;
   grid-template-columns: auto minmax(2,2fr);
   overflow: auto;
   display: grid;
-  grid-row-gap: 10rem;
+  grid-row-gap: 11rem;
   grid-column-gap: 2rem;
   max-width: 90%;
   margin: auto;
