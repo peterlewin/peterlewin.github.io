@@ -331,6 +331,24 @@ h2 {
      
 }
 
+.border22 {
+
+  text-align: left;
+  font-family: "Tahoma";
+  color: rgb(255, 248, 220);
+  border-radius: 5px ;
+  background-color:rgb(210, 105, 30, 0.8);
+  font-size: larger;
+  max-width:fit-content;
+  margin-right: 50px;
+  text-decoration: none;
+  padding-left: 35px;
+  padding-right: 35px;
+  border: 1px outset antiquewhite;
+  border-radius: 5px ;
+   
+}
+
 .border3 {
   text-align: left;
   font-family: "Tahoma";
