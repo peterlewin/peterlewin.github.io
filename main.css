@@ -412,13 +412,12 @@ h2 {
   }
 }
 @media screen and (max-width: 880px){
-  .border  {
     text-align: center;
     font-family: "Tahoma";
     border: 1px outset antiquewhite;
     color: rgb(255, 248, 220);
     border-radius: 3px ;
-    background-color:rgb(210, 105, 30, 0.8);
+    background-color:#d2691ecc;
     font-size: larger;
     text-decoration: none;
     padding: 2px;
@@ -426,7 +425,7 @@ h2 {
   .border3{
     color: rgb(255, 248, 220);
     border-radius: 3px ;
-    background-color:rgb(210, 105, 30, 0.8);
+    background-color:#d2691ecc;
     padding: 2px;
     font-size: .9em;
     padding-left: 15px;
@@ -437,7 +436,7 @@ h2 {
   .border4{
     color: rgb(255, 248, 220);
     border-radius: 3px ;
-    background-color:rgb(210, 105, 30, 0.8);
+    background-color:#d2691ecc;
     padding: 2px;
     font-size: .9em;
     padding-left: 15px;
