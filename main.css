@@ -450,15 +450,15 @@ h2 {
   color: rgb(210, 105, 30, .8);
   border-radius: 3px ;
   background-color:rgb(255, 248, 220, 0.8);
-  padding: 2px;
-  font-size: .9em;
+  padding: 15px;
+  font-size: larger;
  } 
  .border22{
   color: rgb(210, 105, 30, .8);
   border-radius: 3px ;
   background-color:rgb(255, 248, 220, 0.8);
-  padding: 2px;
-  font-size: .9em;
+  padding: 15px;
+  font-size: larger;
  } 
   .stitle{
     color: rgb(210, 105, 30, 0.8);
