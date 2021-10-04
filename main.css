@@ -108,10 +108,10 @@
     }
     
     .topnav a {
-      text-align: center;
+      
       display: inline-block;
       color: rgb(255, 248, 220);
-      text-align: center;
+      
       font-size: larger;
       align-items: flex-start;
       flex: 1;
@@ -119,15 +119,23 @@
     }
     
     .topnav a:hover {
-      box-shadow: 3px 3px rgb(255, 248, 220, 0.4);
+      box-shadow: 3px 2px rgba(245, 242, 242, 0.8);
       border: 1px outset antiquewhite;
+      border-top-right-radius: 15px;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
     }
     
     .topnav a:active {
       text-decoration: none;
-      background-color:rgb(210, 105, 30, 0.8);
+      background-color:rgb(250, 235, 215, 0.075);
       color: rgb(255, 248, 220);
-      border: 1px inset antiquewhite;
+      box-shadow: 1.5px 2px inset  rgba(148, 144, 144,) ;
+      
+      font-size: larger;
+      align-items: flex-start;
+      flex: 1;
+      padding: 4px 42px;
     }
     
     .topnav .icon {
