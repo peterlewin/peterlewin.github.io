@@ -417,7 +417,7 @@ h2 {
     border: 1px outset antiquewhite;
     color: rgb(255, 248, 220);
     border-radius: 3px ;
-    background-color:#d2691ecc;
+    background-color:rgba(233, 105, 14, 0.7);
     font-size: larger;
     text-decoration: none;
     padding: 2px;
@@ -425,7 +425,7 @@ h2 {
   .border3{
     color: rgb(255, 248, 220);
     border-radius: 3px ;
-    background-color:#d2691ecc;
+    background-color:rgba(233, 105, 14, 0.7);
     padding: 2px;
     font-size: .9em;
     padding-left: 15px;
@@ -436,7 +436,7 @@ h2 {
   .border4{
     color: rgb(255, 248, 220);
     border-radius: 3px ;
-    background-color:#d2691ecc;
+    background-color:rgba(233, 105, 14, 0.7);
     padding: 2px;
     font-size: .9em;
     padding-left: 15px;
