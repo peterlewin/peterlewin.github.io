@@ -405,7 +405,11 @@ h2 {
   
 }
 
-@media (max-width: 440px) {
+@media screen and (max-width: 440px) and (orientation: portrait)  {
+  body {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
   .border  {
     text-align: center;
     font-family: "Tahoma";
