@@ -408,7 +408,7 @@ h2 {
 @media screen and (max-width: 440px) and (orientation: portrait)  {
   body {
     transform: rotate(-270deg);
-    transform-origin: 50% 50%;
+    transform-origin: 100% 100%;
   }
 }
 @media screen and (max-width: 880px){
@@ -416,38 +416,49 @@ h2 {
     text-align: center;
     font-family: "Tahoma";
     border: 1px outset antiquewhite;
-    color: rgb(255, 255, 255);
+    color: rgb(255, 248, 220);
     border-radius: 3px ;
-    background-color:rgb(255, 248, 220, 0.8);
-    font-size: .9em;
+    background-color:rgb(210, 105, 30, 0.8);
+    font-size: larger;
     text-decoration: none;
     padding: 2px;
   }
   .border3{
-    color: rgb(255, 255, 255);
+    color: rgb(255, 248, 220);
     border-radius: 3px ;
-    background-color:rgb(255, 248, 220, 0.8);
+    background-color:rgb(210, 105, 30, 0.8);
     padding: 2px;
     font-size: .9em;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
   }
   .border4{
-    color: rgb(255, 255, 255);
+    color: rgb(255, 248, 220);
     border-radius: 3px ;
-    background-color:rgb(255, 248, 220, 0.8);
+    background-color:rgb(210, 105, 30, 0.8);
     padding: 2px;
     font-size: .9em;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
   }
 
-.border2{
-  color: rgb(255, 255, 255);
+ .border2{
+  color: rgb(210, 105, 30);
   border-radius: 3px ;
   background-color:rgb(255, 248, 220, 0.8);
   padding: 2px;
   font-size: .9em;
-}
+ } 
   .stitle{
-    color: rgb(255, 255, 255);
-    background-color:rgb(255, 248, 220, 0.8);
+    color: rgb(255, 248, 220, 0.8);
+    background-color:rgb(210, 105, 30, 0.8);
+    border-top-right-radius: 15px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     
   }
 }
