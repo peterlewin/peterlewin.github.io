@@ -412,6 +412,7 @@ h2 {
   }
 }
 @media screen and (max-width: 880px){
+    .border{
     text-align: center;
     font-family: "Tahoma";
     border: 1px outset antiquewhite;
