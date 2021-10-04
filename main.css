@@ -405,9 +405,9 @@ h2 {
   
 }
 
-@media screen and (max-width: 440px) and (orientation: portrait)  {
+@media screen and (max-width: 640px) and (orientation: portrait)  {
   body {
-    transform: rotate(-90deg);
+    transform: rotate(-270deg);
     transform-origin: 50% 50%;
   }
   .border  {
