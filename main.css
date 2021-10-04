@@ -411,12 +411,12 @@ h2 {
     transform-origin: 50% 50%;
   }
 }
-@media screen and (max-width: 880px){
-      .border  {
+@media screen and (max-width: 840px){
+    .border  {
     text-align: center;
     font-family: "Tahoma";
     border: 1px outset antiquewhite;
-    color: rgb(210, 105, 30);
+    color: rgb(255, 248, 220, .8);
     border-radius: 3px ;
     background-color:rgb(255, 248, 220, .8);
     font-size: larger;
