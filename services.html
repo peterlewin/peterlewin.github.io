@@ -149,7 +149,20 @@
             x.className = "topnav";
           }
         }
-        </script>     
+        </script>   
+
+        <script>
+
+          window.onscroll = function() {scrollFunction()};
+    
+          function scrollFunction() {
+           if (document.body.scrollTop > 550 || document.documentElement.scrollTop > 550) {
+           document.getElementById("myTopnav").style.top = "0px";
+           } else {
+           document.getElementById("myTopnav").style.position = "-50px";
+            }
+           }
+        </script>  
            
     
 
