@@ -10,7 +10,7 @@
 </head>
 <body>
    <div class="topnav" id="myTopnav">
-    <div class="fixed-header2">
+    <div class="fixed-header">
         <div class="container">
             <nav>
                 <a href="index.html"><img src="logow11.png" alt=""></a>
@@ -114,7 +114,18 @@ Our range of experts are fully qualified and offer a fresh approach to managing 
   }
   </script>
 
+    <script>
 
+      window.onscroll = function() {scrollFunction()};
+
+      function scrollFunction() {
+       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+       document.getElementById("myTopnav").style.top = "-50px";
+       } else {
+       document.getElementById("myTopnav").style.top = "0px";
+        }
+       }
+    </script>
 
 </body>
 </html>
