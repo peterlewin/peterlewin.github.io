@@ -123,6 +123,19 @@ function showSlides() {
     }
 </script>
 
+    <script>
+
+      window.onscroll = function() {scrollFunction()};
+
+      function scrollFunction() {
+       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+       document.getElementById("myTopnav").style.top = "-50px";
+       } else {
+       document.getElementById("myTopnav").style.top = "0px";
+        }
+       }
+    </script>
+
 
 
 </body>
