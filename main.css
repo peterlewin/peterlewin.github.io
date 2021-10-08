@@ -548,9 +548,10 @@ input[type=text], select, textarea {
 
   /* Slideshow container */
 .slideshow-container {
-  max-width: 1020px;
+  max-width: 100%;
   position: relative;
   margin: auto;
+  top: -11px;
 
 }
 
