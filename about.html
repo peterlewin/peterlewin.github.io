@@ -5,59 +5,416 @@
     <title>About eZ-Commerce Solutions</title>
     <link rel="stylesheet" type="text/css" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="logo11.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" alt ="eZ-Commerce solutions UK" href="logo11.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#d2691e" >
 </head>
 <body>
-   <div class="topnav" id="myTopnav" style="top:0px;">
+  <div class="topnav" id="myTopnav" style="top:0px;">
     <div class="fixed-header">
         <div class="container">
             <nav>
-                <a href="index.html"><img src="logow11.png" alt=""></a>
-                <a href="services.html">Services</a>
-                <a href="news.html">News</a>
-                <a href="about.html">About us</a>
+                <a href="index.html"><img src="logow11.png" style="max-width:100%;" alt=""></a>
+                <div class="dropdown">
+                  <a href="services.html" class="dropbtn">Services</a><a class="navarw" onclick="toggleActive(this)">›</a>
+                  <div class="dropdown-content">
+                      <a href="services.html">Web Design</a>
+                      <a href="services.html#hosting-section">Web Hosting</a>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <a href="news.html" class ="dropbtn">News</a><a class="navarw" onclick="toggleActive(this)">›</a>
+                  <div class="dropdown-content">
+                        <a href="news.html">Blockchain Apps</a>
+                        <a href="news.html#opportunities">Opportunities</a>
+                        <a href="news.html#ai-section">The Power of AI</a>
+                        <a onclick="document.getElementById('loginModal').style.display='block'">eZ-Net</a>
+                  </div>
+                  </div>
+                  <div class="dropdown">
+                    <a href="about.html" class ="dropbtn">About us</a><a class="navarw" onclick="toggleActive(this)">›</a>
+                    <div class="dropdown-content">
+                          <a href="about.html">What do we do?</a>
+                          <a href="ESG.html">ESG</a>
+                          <a href="news.html">Meet the Team!</a>
+                          <a href="careers.html">Join eZ-Net</a>
+                    </div>
+                    </div>
                 <a href="contact.html">Get in touch!</a>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction1()">
-                <i class="fa fa-bars"></i>
-                    </a>
+                <div class="dropdown " >
+                  <a class="fa fa-user" id="fauser" onclick="toggleActive(this)"></a>
+                  <div class="dropdown-content profile-dropdown">
+                    <a onclick="document.getElementById('loginModal').style.display='block'">Sign in/Register</a>
+                    <a onclick="document.getElementById('loginModal').style.display='block'">eZ-Hub Home</a>
+                    <a onclick="document.getElementById('loginModal').style.display='block'">Support</a>
+                  </div>
+              </div>
+              <a href="javascript:void(0);" class="icon" onclick="toggleNav()">
+                <i class="fa burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </i>
+            </a>
+            
             </nav>
         </div>
-    </div>   
-    <div class="fixed-footer">
-        <div class="container">Copyright &copy; 2021 eZ-Commerce Solutions</div>        
+    </div> 
+</div>  
+
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <form class="modal-content animate" action="login.php" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('loginModal').style.display='none'" class="closemodal" title="Close Modal">&times;</span>
+      <img src="images/eznet2.png" alt="Avatar" class="avatar">
     </div>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn">Cancel</button>
+      <button onclick="document.getElementById('registerModal').style.display='block'" class="register">Register</button>
+
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+<!-- Registration Modal -->
+<div id="registerModal" class="modal">
+  <form id="registerForm" class="modal-content animate">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('registerModal').style.display='none'" class="closemodal" title="Close Modal">&times;</span>
+      <img src="images/eznet2.png" alt="Avatar" class="avatar">
+    </div>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="email"><b>Email</b></label>
+      <input type="email" placeholder="Enter Email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+
+      <button type="submit">Register</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+      <div id="errorMessage" style="color:red;"></div>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('registerModal').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
 </div>
 
-    <div class="slideshow-container">
+<script>
+  document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const formData = new FormData(this);
+      const errorMessage = document.getElementById('errorMessage');
+  
+      fetch('register.php', {
+          method: 'POST',
+          body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.status === 'error') {
+              errorMessage.textContent = data.message;
+          } else {
+              errorMessage.style.color = 'green';
+              errorMessage.textContent = data.message;
+          }
+      })
+      .catch(error => {
+          errorMessage.textContent = 'An error occurred. Please try again later.';
+      });
+  });
+  </script>
+
+
+<script>
+// Get the modals
+var loginModal = document.getElementById('loginModal');
+var registerModal = document.getElementById('registerModal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == loginModal) {
+        loginModal.style.display = "none";
+    }
+    if (event.target == registerModal) {
+        registerModal.style.display = "none";
+    }
+}
+</script>
+<svg id="backToTopArrow" viewBox="0 0 24 24" onclick="backToTop()">
+  <path d="M12 2l-12 10h7v10h10v-10h7z"></path>
+</svg>
+<button id="backToTopBtn" onclick="backToTop()">Back to Top</button>
+
+
+  <header class="about-header">
+    <h2>Enhancing Business Success with Professional Web Design</h2>
+    <p style="color:blanchedalmond;"class ="fade-in">Introducing eZ-commerce Solutions</p>
+    <video class="about-vheader" src="video/hex.mov" autoplay loop ></video>
+  </header>
+
+  <article>
+    <section class="article-section">
+      <h3 class="section-title">Take your first step</h3>
+      <p>In today's digital age, having a strong online presence is crucial for the success and growth of small businesses. A well-designed website serves as a powerful tool to attract potential customers, showcase products or services, and establish credibility in the competitive online marketplace. At eZ-commerce Solutions, we understand the importance of effective web design in driving business success. Here we will explore the key benefits of having a website for a small business and how our web design agency can help you create an impactful online presence.</p>
+      <section class="features">
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/coding.mp4" alt="Tools selection" autoplay loop></video>
+          <h2>Unique Design</h2>
+          <p>Hand written code to avoid the template look</p>
+        </div>
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/network.mov" alt="Tools selection" autoplay loop></video>
+          <h2>Join a Network</h2>
+          <p>eZ-Net is a Network of industry champions</p>
+        </div>
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/infinite.mov" alt="Tools selection" autoplay loop></video>
+          <h2> Infinite Possibilities</h2>
+          <p>Everything starts with an idea</p>
+        </div>
+      </section>
+    </section>
+
+    <section id="ArrowShow" class="article-section article-light" >
+      <h3 class="section-title" id="ArrowShow" >Establishing a Professional Image</h3>
+      <p>A professionally designed website instantly elevates your small business's image. It serves as a virtual storefront, conveying your brand's identity, values, and quality. Our team at eZ-commerce Solutions specializes in creating visually appealing websites that reflect the essence of your business, instilling confidence in your potential customers and setting you apart from competitors.</p>
+      <section class="features">
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/personal.mp4" alt="Tools selection" autoplay loop></video>
+          
+          <h2>Personal</h2>
+          <p>A bespoke website to make you stand out</p>
+        </div>
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/secure.mov" alt="Secure" autoplay loop></video>
+          <h2> Secure</h2>
+          <p>SSL, Encryption & HTTPS auto redirects.</p>
+        </div>
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/advanced.mov" alt="Tools selection" autoplay loop></video>
+          
+          <h2>Advanced</h2>
+          <p>Integrated advanced web functionality</p>
+        </div>
+
+      </section>
+    </section>
+
+    <section class="article-section">
+      <h3 class="section-title">Expanding Your Reach</h3>
+      <p>A well-optimized website enables your small business to reach a broader audience. With a strategic approach to search engine optimization (SEO), we ensure that your website appears prominently in search engine results, driving organic traffic to your site. By targeting relevant keywords and optimizing your website's structure, content, and performance, we help you attract more visitors and potential customers.</p>
+      <section class="features">
+        
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/local.mov" alt="Tools selection" autoplay loop></video>
+          
+          <h2>Appear locally</h2>
+          <p>Target a local audience</p>
+        </div>
+        
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/global.mov" alt="Tools selection" autoplay loop></video>
+          
+          <h2>Appear Globally</h2>
+          <p>Target a global audience</p>
+        </div>
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/segmented.mov" alt="Tools selection" autoplay loop></video>
+          
+          <h2>Segmented SEO</h2>
+          <p>Make sure you're seen by the right person</p>
+        </div>
+      </section>
+    </section>
+    <section class="article-section article-light">
+      <h3 class="section-title">Showcasing Products and Services</h3>
+      <p>Your website serves as a virtual showroom, allowing you to showcase your products or services in an engaging and informative manner. At eZ-commerce Solutions, we employ user-centric design principles to create intuitive and visually appealing layouts that highlight your offerings. Through compelling product descriptions, high-quality images, and interactive features, we ensure that your website effectively captivates and converts visitors into customers.</p>
+      <section class="features">
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/interactive.mov" alt="Tools selection" autoplay loop></video>
+          
+          <h2>Interactive</h2>
+          <p>Keep your customers engaged</p>
+        </div>
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/showcase2.mov" alt="Tools selection" autoplay loop></video>
+          
+          <h2>Advanced Image Galleries</h2>
+          <p>Highlight a product or sale</p>
+        </div>
+        <div class="feature-box">
+          <video class = "feature-video"  src="video/quality.mov" alt="Tools selection" autoplay loop></video>
+          
+          <h2>High Quality media</h2>
+          <p>Professional licensed images and videos</p>
+        </div>
+      </section>
+    </section>
+    <section class="article-section">
+      <h3 class="section-title">Building Trust and Credibility</h3>
+      <p>In today's digital landscape, customers expect businesses to have an online presence. A professionally designed website establishes trust and credibility. By providing essential information about your business, displaying customer testimonials, and incorporating secure payment gateways, we help instill confidence in your visitors, encouraging them to engage with your business and make purchases.</p>
+      <section class="features">
+
+        <div class="feature-box">
+          <video class ="feature-video" src="video/payment.mov" alt="Quality Icon" autoplay loop></video>
+          <h2>Secure Payment Options</h2>
+          <p>Paypal, Credit/Debit Card encrypted payments</p>
+        </div>
+        <div class="feature-box">
+          <video class="feature-video" src="video/professional.mov" alt="Shipping Icon"  autoplay loop></video>
+          <h2>Professional Approach</h2>
+          <p>A professional website URL & business Email address</p>
+        </div>
+      </section>
+    </section>
+    <section class="article-section article-light">
+      <h3 class="section-title">Enhancing Customer Engagement</h3>
+      <p>Your website serves as a platform for meaningful interaction with your customers. Through features such as contact forms, live chat, and social media integration, we empower your small business to engage and communicate with your audience effectively. Our team at eZ-commerce Solutions can integrate customer relationship management (CRM) systems to streamline customer interactions, improving customer satisfaction and loyalty.</p>
+      <section class="features">
+        <div class="feature-box">
+          <video class="feature-video" src="video/CRM.mov" alt="Tools selection" autoplay loop></video>
+         <h2>Custom CRM tools</h2>
+          <p>Streamline customer data & interactions efficiently</p>
+        </div>
+        <div class="feature-box">
+          <video class="feature-video" src="video/chatbot.mov" alt="Tools selection" autoplay loop></video>
+         <h2>Chat Application</h2>
+          <p>Personalised automated chat bot to handle FAQs</p>
+        </div>
+        <div class="feature-box">
+          <video class="feature-video" src="video/integrated.mov" alt="Tools selection" autoplay loop></video>
+          <h2>Integrated Contact Options</h2>
+          <p>Give customers a choice. Chat/Form/Social Media/Email
+          </p>
+        </div>
+      </section>
+    </section>
+    <section class="article-section">
+      <h3 class="section-title">Mobile-Friendly Design</h3>
+      <p>In an increasingly mobile-centric world, having a mobile-friendly website is paramount. Our web design agency specializes in creating responsive websites that adapt seamlessly to different screen sizes and devices. By ensuring a smooth and enjoyable browsing experience for mobile users, we help you tap into the growing number of consumers who access the internet through smartphones and tablets.</p>
+      <section class="features">
+        <div class="feature-box">
+          <video class="feature-video" src="video/tablet.mov" alt="Tools selection" autoplay loop></video>
+          <h2>Mobile First</h2>
+          <p>So far in 2024, around 50% of all website traffic is Mobile</p>
+        </div>
+        <div class="feature-box">
+          <video class="feature-video" src="video/responsive.mov" alt="Tools selection" autoplay loop></video>
+          <h2>Device Responsive</h2>
+          <p>Optimised for Desktop, Mobile and Tablet</p>
+        </div>
+      </section>
+    </section>
+    
+
+    <section class="article-section ">
+      <h3 class="section-title">Take your first step</h3>
+      <p>A professionally designed website is an invaluable asset for small businesses in today's digital landscape. At eZ-commerce Solutions, we are dedicated to helping businesses like yours establish a strong online presence and achieve success. Our expertise in web design, combined with our focus on user experience, functionality, and search engine optimization, enables us to create websites that drive results. Contact eZ-commerce Solutions today to take your small business to new heights with a visually stunning and impactful website tailored to your unique needs.</p>
+
+    </section>
+    
+  </article>
+ <!-- Contact Section -->
+ <footer class="contact-section">
+  <div class="contact-container">
+      <div class="contact-info">
+          <h2>Contact Us</h2>
+          <div class="contact-item">
+          <p><i class="fas fa-map-marker-alt"></i> Ashton, Manchester, United Kingdom</p>
+          </div>
+          <div class="contact-item">
+          <p><i class="fas fa-phone-alt"></i><span><a href="tel:+07803361432"> 07803361432</a></p></span>
+          </div>
+          <div class="contact-item">
+          <p><i class="fas fa-envelope"></i><span><a href="mailto:contact@eZ-CommerceSolutions.co.uk"> contact@eZ-CommerceSolutions.co.uk</a></p></span>
+          </div>
+        </div>
+
+<div class="social-media">
+<h2>Follow Us</h2>
+<div class="social-icons">
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-linkedin-in"></i></a>
+</div>
+</div>
+
+
+<div class="newsletter">
+  <h2>Newsletter</h2>
+  <p>Subscribe to our newsletter for updates and offers.</p>
+  <form action="#">
+      <input type="email" placeholder="Your Email" required>
+      <button type="submit">Subscribe</button>
+  </form>
+</div>
+</div>
+</footer>
+  <div id ="ffooter" class="fixed-footer" style="overflow: hidden;">
+    <div>Copyright &copy; 2021 eZ-Commerce Solutions
+      <a class = "border4" href="terms.html" target="_blank" rel="noopener noreferrer">T&Cs</a>
+      <a class = "border4" href="ppolicy.html" >Privacy</a>
+      <a class = "border4" href="contact.html" >Contact</a>
+  
+    </div>          
+  </div>   
+
+
+  
+   
+
+    
+<!-- </div>
+    <div class="slideshow-container"> -->
 
         <!-- Full-width images with number and caption text -->
-        <div class="mySlides fade">
+        <!-- <div class="mySlides fade">
           <div class="numbertext"></div>
-          <img src="slideshow2.jpg" style="width:100%">
+          <img src="images/slideshow2.jpg" style="width:100%">
           <div class="text"></div>
         </div>
       
         <div class="mySlides fade">
           <div class="numbertext"></div>
-          <img src="about11.jpg" style="width:100%">
+          <img src="images/about11.jpg" style="width:100%">
           <div class="text"></div>
         </div>
       
         <div class="mySlides fade">
           <div class="numbertext"></div>
-          <img src="network22.jpg" style="width:100%">
+          <img src="images/network22.jpg" style="width:100%">
           <div class="text"></div>
         </div>
-      
+       -->
         <!-- Next and previous buttons -->
         <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
       </div> -->
-      <br>
+      <!-- <br> -->
       
       <!-- The dots/circles -->
-      <div style="text-align:center">
+      <!-- <div style="text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
@@ -90,42 +447,202 @@
           dot2s[slideIndex-1].className += " active";
           setTimeout(showSlides, 3400); // Change image every 2 seconds
 }
-</script>
+</script> -->
+      
+        
+        <!-- function showSlides(n) {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          var dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";  
+          }
+          for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+        } -->
 
-
-<h2 class ="stitle">About eZ-Commerce Solutions</h2>
+    </div>
+    
+<!-- <h2 class ="stitle5">About eZ-Commerce Solutions</h2>
 
 <p class = "border2">Founded in 2021, we focus on helping new & growing businesses optimize their virtual space & IT Network
 <br>
 <br>
 Our expert associates are fully qualified & we work with entry level professionals to offer a fresh approach in managing your virtual presence</p>
+<br>
+<img src="tpage111.png" alt="eZ-Commerce solutions UK" id="tpage111" class = "center"> -->
 
+<script>const lines = document.querySelectorAll('.fade-in');
 
-<a class = "border2" href="contact.html" >Contact</a>
+  lines.forEach((line, index) => {
+    line.style.animationDelay = `${index * .75}s`;
+    line.style.animationDuration = '1s';
+    line.style.animationFillMode = 'forwards';
+    line.style.animationTimingFunction = 'ease-in-out';
+    line.classList.add('fade-in-animation');
+  });</script>
 
-      <script>
-  function myFunction1() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-      x.className += " responsive";
-    } else {
-      x.className = "topnav";
-    }
+<script>// Function to toggle active class on arrow click and show dropdown content
+  function toggleActive(el) {
+      // Toggle 'active2' class for arrow rotation
+      el.classList.toggle('active2');
+      
+      // Find the parent dropdown container
+      var dropdownContainer = el.parentElement;
+      
+      // Toggle 'active3' class for dropdown content display
+      if (dropdownContainer.classList.contains('dropdown')) {
+          var dropdownContent = dropdownContainer.querySelector('.dropdown-content');
+          dropdownContent.classList.toggle('active3');
+      }
   }
+  
+  // Function to close all dropdowns
+  function closeDropdowns() {
+      // Find all dropdown content elements and arrows
+      const dropdownContents = document.querySelectorAll('.dropdown-content');
+      const arrows = document.querySelectorAll('.dropdown .active2');
+      
+      // Remove the 'active3' class from all dropdown content to hide them
+      dropdownContents.forEach((dropdownContent) => {
+          dropdownContent.classList.remove('active3');
+      });
+      
+      // Remove the 'active2' class from all active arrows to reset arrow state
+      arrows.forEach((arrow) => {
+          arrow.classList.remove('active2');
+      });
+  }
+  
+  // Function to toggle the navigation menu on burger click
+  function toggleNav() {
+      const nav = document.getElementById("myTopnav");
+      const burger = document.querySelector('.burger'); // Select the burger icon
+  
+      // Toggle nav open/close
+      if (nav.className === "topnav") {
+          nav.className += " responsive";
+      } else {
+          nav.className = "topnav";
+          // Close all dropdowns when the nav closes
+          closeDropdowns();
+      }
+      
+      // Toggle the burger icon to animate into a cross
+      burger.classList.toggle('toggle');
+  }
+  
   </script>
+<script>
+  var isButtonVisible = false; // Track visibility of button
+  var isArrowVisible = false; // Track visibility of arrow
 
-    <script>
+  // Function to scroll back to top smoothly
+  function backToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-      window.onscroll = function() {scrollFunction()};
+  // Function to show/hide back to top button and arrow based on scroll position
+  window.onscroll = function() {
+    var backToTopBtn = document.getElementById("backToTopBtn");
+    var backToTopArrow = document.getElementById("backToTopArrow");
+    var firstSectionHeight = document.getElementById("ArrowShow").offsetHeight;
 
-      function scrollFunction() {
-       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-       document.getElementById("myTopnav").style.top = "-50px";
-       } else {
-       document.getElementById("myTopnav").style.top = "0px";
-        }
-       }
-    </script>
+    if (document.body.scrollTop > firstSectionHeight || document.documentElement.scrollTop > firstSectionHeight) {
+      if (!isButtonVisible || !isArrowVisible) {
+        fadeIn(backToTopBtn); // Fade in button
+        fadeIn(backToTopArrow); // Fade in arrow
+        isButtonVisible = true;
+        isArrowVisible = true;
+      }
+    } else {
+      if (isButtonVisible || isArrowVisible) {
+        fadeOut(backToTopBtn); // Fade out button
+        fadeOut(backToTopArrow); // Fade out arrow
+        isButtonVisible = false;
+        isArrowVisible = false;
+      }
+    }
+
+    // Scroll functionality for header and footer
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("myTopnav").style.top = "-60px";
+    } else {
+      document.getElementById("myTopnav").style.top = "0px";
+    }
+    if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
+      document.getElementById("ffooter").style.bottom = "0px";
+    } else {
+      document.getElementById("ffooter").style.bottom = "-50px";
+    }
+  };
+
+  // Function to fade in element
+  function fadeIn(element) {
+    var opacity = 0;
+    element.style.display = "block";
+    var fadeInInterval = setInterval(function() {
+      if (opacity < 1) {
+        opacity += 0.1;
+        element.style.opacity = opacity;
+      } else {
+        clearInterval(fadeInInterval);
+      }
+    }, 30);
+  }
+
+  // Function to fade out element
+  function fadeOut(element) {
+    var opacity = 1;
+    var fadeOutInterval = setInterval(function() {
+      if (opacity > 0) {
+        opacity -= 0.1;
+        element.style.opacity = opacity;
+      } else {
+        clearInterval(fadeOutInterval);
+        element.style.display = "none";
+      }
+    }, 30);
+  }
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('.article-section');
+  const fadeInOptions = {
+    threshold: 0.3 // Adjust threshold as needed
+  };
+
+  const fadeInObserver = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('open');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, fadeInOptions);
+
+  sections.forEach(section => {
+    fadeInObserver.observe(section);
+  });
+});
+
+
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var video = document.querySelector(".about-vheader");
+      video.playbackRate = 0.75; // Adjust the playback rate as needed
+  });
+</script>
+<script src="myscript.js"></script>
 
 </body>
 </html>
