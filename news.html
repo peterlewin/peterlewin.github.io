@@ -1,67 +1,1077 @@
 <!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="logo11.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" alt ="eZ-Commerce solutions UK" href="logo11.ico">
     <title>eZ-Commerce Solutions news</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
+
+
 <body>
-<div class="topnav" id="myTopnav">
-    <div class="fixed-header2">
+  <div class="topnav" id="myTopnav" style="top:0px;">
+    <div class="fixed-header">
         <div class="container">
             <nav>
-                <a href="index.html"><img src="logow11.png" alt=""></a>
-                <a href="services.html">Services</a>
-                <a href="news.html">News</a>
-                <a href="about.html">About us</a>
+                <a href="index.html"><img src="logow11.png" style="max-width:100%;" alt=""></a>
+                <div class="dropdown">
+                  <a href="services.html" class="dropbtn">Services</a><a class="navarw" onclick="toggleActive(this)">›</a>
+                  <div class="dropdown-content">
+                      <a href="services.html">Web Design</a>
+                      <a href="services.html#hosting-section">Web Hosting</a>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <a href="news.html" class ="dropbtn">News</a><a class="navarw" onclick="toggleActive(this)">›</a>
+                  <div class="dropdown-content">
+                        <a href="news.html">Blockchain Apps</a>
+                        <a href="news.html#opportunities">Opportunities</a>
+                        <a href="news.html#ai-section">The Power of AI</a>
+                        <a onclick="document.getElementById('loginModal').style.display='block'">eZ-Net</a>
+                  </div>
+                  </div>
+                  <div class="dropdown">
+                    <a href="about.html" class ="dropbtn">About us</a><a class="navarw" onclick="toggleActive(this)">›</a>
+                    <div class="dropdown-content">
+                          <a href="about.html">What do we do?</a>
+                          <a href="ESG.html">ESG</a>
+                          <a href="news.html">Meet the Team!</a>
+                          <a href="careers.html">Join eZ-Net</a>
+                    </div>
+                    </div>
                 <a href="contact.html">Get in touch!</a>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction1()">
-                <i class="fa fa-bars"></i>
-                    </a>
+                <div class="dropdown " >
+                  <a class="fa fa-user" id="fauser" onclick="toggleActive(this)"></a>
+                  <div class="dropdown-content profile-dropdown">
+                    <a onclick="document.getElementById('loginModal').style.display='block'">Sign in/Register</a>
+                    <a onclick="document.getElementById('loginModal').style.display='block'">eZ-Hub Home</a>
+                    <a onclick="document.getElementById('loginModal').style.display='block'">Support</a>
+                  </div>
+              </div>
+              <a href="javascript:void(0);" class="icon" onclick="toggleNav()">
+                <i class="fa burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </i>
+            </a>
+            
             </nav>
         </div>
-    </div>   
+    </div> 
+</div>  
+
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <form class="modal-content animate" action="login.php" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('loginModal').style.display='none'" class="closemodal" title="Close Modal">&times;</span>
+      <img src="images/eznet2.png" alt="Avatar" class="avatar">
+    </div>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn">Cancel</button>
+      <button onclick="document.getElementById('registerModal').style.display='block'" class="register">Register</button>
+
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
 </div>
-    <div class="fixed-footer">
-        <div class="container">Copyright &copy; 2021 eZ-Commerce Solutions</div>        
+<!-- Registration Modal -->
+<div id="registerModal" class="modal">
+  <form id="registerForm" class="modal-content animate">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('registerModal').style.display='none'" class="closemodal" title="Close Modal">&times;</span>
+      <img src="images/eznet2.png" alt="Avatar" class="avatar">
+    </div>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="email"><b>Email</b></label>
+      <input type="email" placeholder="Enter Email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+
+      <button type="submit">Register</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+      <div id="errorMessage" style="color:red;"></div>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('registerModal').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const formData = new FormData(this);
+      const errorMessage = document.getElementById('errorMessage');
+  
+      fetch('register.php', {
+          method: 'POST',
+          body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.status === 'error') {
+              errorMessage.textContent = data.message;
+          } else {
+              errorMessage.style.color = 'green';
+              errorMessage.textContent = data.message;
+          }
+      })
+      .catch(error => {
+          errorMessage.textContent = 'An error occurred. Please try again later.';
+      });
+  });
+  </script>
+
+
+<script>
+// Get the modals
+var loginModal = document.getElementById('loginModal');
+var registerModal = document.getElementById('registerModal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == loginModal) {
+        loginModal.style.display = "none";
+    }
+    if (event.target == registerModal) {
+        registerModal.style.display = "none";
+    }
+}
+</script>
+</div>    <svg id="backToTopArrow" viewBox="0 0 24 24" onclick="backToTop()">
+  <path d="M12 2l-12 10h7v10h10v-10h7z"></path>
+</svg>
+<button id="backToTopBtn" onclick="backToTop()">Back to Top</button>
+
+
+<div id ="ffooter" class="fixed-footer" style="overflow: hidden;">
+    <div>Copyright &copy; 2021 eZ-Commerce Solutions
+      <a class = "border4" href="terms.html" target="_blank" rel="noopener noreferrer">T&Cs</a>
+      <a class = "border4" href="ppolicy.html" >Privacy</a>
+      <a class = "border4" href="contact.html" >Contact</a>
+  
+    </div>          
+  </div>
+
+  
+
+    <!-- <h2 class = "stitle5">Keep up to date </h2>
+        <br><br> -->
+  <div class ="news-header">
+        <h2 class="stitlenews">Leveraging Blockchain for Inclusive Economic Transformation</h2>
+    <video class="news-video" src="video/blockchain.mov" autoplay loop ></video>
+  </div>
+  <div class="opportunity-section" style="position: relative; overflow: hidden;">
+    <canvas id="background-particles2"></canvas>
+  <div class="section-bar2" id="section-bar" >
+        
+    <ul class ="section-list">
+      
+      <li onclick="toggleSection('section2')">CRM</li>
+      <li onclick="toggleSection('section3')">CMS</li>
+      <li onclick="toggleSection('section4')">PDRN</li>
+      <li onclick="toggleSection('section5')">E-commerce</li>
+      <li onclick="toggleSection('section6')">Case Studies</li>
+      <li onclick="toggleSection('section7')">Platform Fee</li>
+      
+    </ul>
+  </div>
+</div>
+    <div class="sections">
+      
+      <section id="section1" >
+        <h2>Methods to Create Wealth from the Comfort of Your Home</h2>
+        
+      </section>
+      
+      <section id="section2" class="fade-in">
+
+        <div class="crm-section" id="crmSection">
+          
+          <h1 class="crm-heading"><strong>Blockchain CRM: The Future of Data Integrity</strong></h1>
+          <p class="crm-text">In a world where data integrity defines business success, eZ-Commerce Solutions is proud to introduce our Blockchain CRM — a forthcoming solution that sets new standards in security, transparency, and reliability.<br><br>
+          Designed with precision for the data-driven professional, our Blockchain CRM ensures every interaction is securely documented, creating an unbreakable chain of trust between you and your clients. This is more than a CRM; it’s a commitment to data excellence, where insights are as protected as they are powerful.
+           <br><br> <strong>Included with the Premium Hosting package</strong></p>
+          <div class="crm-video-container">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100076153659566%2Fvideos%2F1154049672416573%2F&show_text=false&width=560&t=0" 
+                  width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" 
+                  allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true">
+              </iframe>
+          </div>
+      </div>
+      
+      <script>
+          // Add fade-in animation on load
+          document.addEventListener('DOMContentLoaded', () => {
+              const crmSection = document.getElementById('crmSection');
+              crmSection.classList.add('fade-in');
+          });
+      </script>
+      </section>
+      <section id="section3">
+
+        <div class="crm-section" id="cmsSection">
+          <h1 class="crm-heading"><strong> 𝗧𝗮𝗸𝗲 𝗙𝘂𝗹𝗹 𝗖𝗼𝗻𝘁𝗿𝗼𝗹 𝗼𝗳 𝗬𝗼𝘂𝗿 𝗪𝗲𝗯𝘀𝗶𝘁𝗲 𝘄𝗶𝘁𝗵 𝗲𝗭-𝗖𝗼𝗺𝗺𝗲𝗿𝗰𝗲 𝗖𝗠𝗦!</strong></h1>
+          <p class="PDRN-text2" >Tired of waiting for updates and paying extra fees for simple changes? With 𝗲𝗭-𝗖𝗼𝗺𝗺𝗲𝗿𝗰𝗲 𝗖𝗠𝗦, you can 𝗲𝗱𝗶𝘁 𝘆𝗼𝘂𝗿 𝘄𝗲𝗯𝘀𝗶𝘁𝗲 𝗶𝗻𝘀𝘁𝗮𝗻𝘁𝗹𝘆—no coding, no delays, no extra costs!<br><br>
+            • <strong >✅ Add & remove products in seconds</strong>
+            <br>• <strong>✅ Update content with ease</strong>
+            <br>• <strong>✅ Save time & money—no more developer fees</strong><br><br>
+           Take charge of your website and stay ahead of the competition. 𝗨𝗽𝗴𝗿𝗮𝗱𝗲 𝘁𝗼 𝗲𝗭-𝗖𝗼𝗺𝗺𝗲𝗿𝗰𝗲 𝗖𝗠𝗦 𝘁𝗼𝗱𝗮𝘆! <br><br>
+           
+           <strong>Included with any Hosting package</strong></p>
+          <div class="crm-video-container">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100076153659566%2Fvideos%2F1450583285910418%2F&show_text=false&width=560&t=0" 
+                  width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" 
+                  allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true">
+              </iframe>
+          </div>
+        </div>
+        <script>
+          // Add fade-in animation on load
+          document.addEventListener('DOMContentLoaded', () => {
+              const crmSection = document.getElementById('cmsSection');
+              crmSection.classList.add('fade-in');
+          });
+      </script>
+      </section>
+      <section id="section4" c>
+
+        <div class="crm-section" id="PDRNSection">
+          <h1 class="crm-heading"><strong>𝗣𝗗𝗥𝗡: 𝗧𝗵𝗲 𝗗𝗮𝘄𝗻 𝗼𝗳 𝗮 𝗧𝗿𝗮𝗻𝘀𝗽𝗮𝗿𝗲𝗻𝘁, 𝗗𝗲𝗰𝗲𝗻𝘁𝗿𝗮𝗹𝗶𝘇𝗲𝗱 𝗙𝘂𝘁𝘂𝗿𝗲</strong></h1>
+          <p class="PDRN-text2">We are entering an era where technology has the power to reshape society, redefine industries, and rebuild trust at every level. The <strong>𝗣𝘂𝗯𝗹𝗶𝗰 𝗗𝗲𝗰𝗲𝗻𝘁𝗿𝗮𝗹𝗶𝘇𝗲𝗱 𝗥𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 (𝗣𝗗𝗥𝗡)</strong> stands as the cornerstone of this transformation—a groundbreaking fusion of <strong>𝗟𝗮𝗿𝗴𝗲 𝗟𝗮𝗻𝗴𝘂𝗮𝗴𝗲 𝗠𝗼𝗱𝗲𝗹𝘀 (𝗟𝗟𝗠)</strong> and <Strong>𝗯𝗹𝗼𝗰𝗸𝗰𝗵𝗮𝗶𝗻 𝘁𝗲𝗰𝗵𝗻𝗼𝗹𝗼𝗴𝘆</strong> designed to revolutionize critical sectors, bringing forth unprecedented benefits:<br><br>
+            • <strong >𝗚𝗼𝘃𝗲𝗿𝗻𝗮𝗻𝗰𝗲</strong>: Decentralized systems that eliminate corruption and empower communities.
+            <br>• <strong>𝗘𝗱𝘂𝗰𝗮𝘁𝗶𝗼𝗻</strong>: Equitable access to learning resources and seamless administration.
+            <br>• <strong>𝗛𝗲𝗮𝗹𝘁𝗵𝗰𝗮𝗿𝗲</strong>: Streamline care pathways while safeguarding patient data with immutable security.
+            <br>• <strong>𝗕𝗮𝗻𝗸𝗶𝗻𝗴</strong>: Offering trustless financial systems built on transparency and inclusion.
+            <br>•<strong> 𝗗𝗶𝘀𝗽𝘂𝘁𝗲 𝗥𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻</strong>: Transparent, fair, and efficient processes that ensure every voice is heard. 
+           <br><br>
+           <!-- At <strong>𝗲𝗭-𝗖𝗼𝗺𝗺𝗲𝗿𝗰𝗲 𝗦𝗼𝗹𝘂𝘁𝗶𝗼𝗻𝘀</strong>, we are committed to being at the forefront of this transformation. Our goal? To integrate the PDRN across public sector services and leverage this revolutionary technology to create systems that prioritize <strong>𝗳𝗮𝗶𝗿𝗻𝗲𝘀𝘀</strong>, <strong>𝘁𝗿𝗮𝗻𝘀𝗽𝗮𝗿𝗲𝗻𝗰𝘆</strong>, 𝗮𝗻𝗱 <strong>𝗰𝗼𝗹𝗹𝗮𝗯𝗼𝗿𝗮𝘁𝗶𝗼𝗻</strong>.
+           <br><br> -->
+           <!-- The PDRN isn’t just about solving today’s challenges; it’s about creating a future where technology works for everyone. Its decentralized framework ensures power remains distributed, <strong>accountability</strong> is built into every decision, and solutions are developed collaboratively—not imposed.
+           <br><br> -->
+           <!-- The stakes are clear: 𝗗𝗲𝗹𝗮𝘆 𝗺𝗲𝗮𝗻𝘀 𝗿𝗶𝘀𝗸𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗽𝗼𝘁𝗲𝗻𝘁𝗶𝗮𝗹 𝗯𝗲𝗶𝗻𝗴 <strong>𝗰𝗲𝗻𝘁𝗿𝗮𝗹𝗶𝘇𝗲𝗱</strong>, <strong>𝗰𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗱</strong>, 𝗮𝗻𝗱 <strong>𝗺𝗶𝘀𝘂𝘀𝗲𝗱</strong>. But together, we can ensure this power is used to build a brighter, more equitable tomorrow.
+           <br></p><p class="PDRN-text3"> -->
+           𝗧𝗵𝗲 <strong>𝗿𝗲𝘃𝗼𝗹𝘂𝘁𝗶𝗼𝗻</strong> 𝗵𝗮𝘀 𝗯𝗲𝗴𝘂𝗻, 𝗮𝗻𝗱 𝘁𝗵𝗲 𝗰𝗵𝗼𝗶𝗰𝗲 𝗶𝘀<strong> 𝘆𝗼𝘂𝗿𝘀.</strong><br>
+            <br>
+           Join us as we shape the future of trust, transparency, and progress.
+        <br><br>
+
+          <div class="crm-video-container">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100076153659566%2Fvideos%2F528138827041469%2F&show_text=false&width=560&t=0" 
+                  width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" 
+                  allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true">
+              </iframe>
+          </div>
+        </div>
+        
+        <script>
+          // Add fade-in animation on load
+          document.addEventListener('DOMContentLoaded', () => {
+              const crmSection = document.getElementById('PDRNSection');
+              crmSection.classList.add('fade-in');
+          });
+        </script>
+      </section>
+      <section id="section5">
+        <div class="crm-section" id="commerceSection">
+          
+          <h1 class="crm-heading"><strong>eZ-Commerce Solutions</strong></h1>
+          <p class="crm-text">At eZ-Commerce Solutions, we go above and beyond to deliver user-friendly websites with powerful features designed to grow your business. From seamless AI integrations to secure hosting and advanced analytics, we’ve got everything covered to help your online store thrive.
+            <br><br><strong> Ready to take your eCommerce game to the next level?</strong>
+           <br><br> <strong>Included with any Hosting package</strong></p>
+          <div class="crm-video-container">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100076153659566%2Fvideos%2F542800351721461%2F&show_text=false&width=560&t=0" 
+                  width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" 
+                  allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true">
+              </iframe>
+          </div>
+      </div>
+      
+      <script>
+          // Add fade-in animation on load
+          document.addEventListener('DOMContentLoaded', () => {
+              const crmSection = document.getElementById('commerceSection');
+              crmSection.classList.add('fade-in');
+          });
+      </script>
+      </section>
+      <section id="section6">
+        <div class="crm-section" id="casesSection">
+          
+          <h1 class="crm-heading"><strong>𝗣𝗼𝘄𝗲𝗿 𝗰𝗼𝗿𝗿𝘂𝗽𝘁𝘀. 𝗗𝗲𝗰𝗲𝗻𝘁𝗿𝗮𝗹𝗶𝘇𝗮𝘁𝗶𝗼𝗻 𝗲𝗺𝗽𝗼𝘄𝗲𝗿𝘀.</strong></h1>
+          <p class="crm-text">From financial disasters to government scandals, centralized systems have left us vulnerable. In this video, we explore three case studies to reveal how 𝗕𝗹𝗼𝗰𝗸𝗰𝗵𝗮𝗶𝗻, 𝗟𝗟𝗠𝘀, and 𝗖𝗿𝘆𝗽𝘁𝗼𝗰𝘂𝗿𝗿𝗲𝗻𝗰𝘆 are transforming broken systems.
+            <br><br>Discover how our <strong>𝙋𝙪𝙗𝙡𝙞𝙘 𝘿𝙚𝙘𝙚𝙣𝙩𝙧𝙖𝙡𝙞𝙯𝙚𝙙 𝙍𝙚𝙨𝙤𝙡𝙪𝙩𝙞𝙤𝙣 𝙉𝙚𝙩𝙬𝙤𝙧𝙠 (𝗣𝗗𝗥𝗡)</strong> offers a path to transparency, accountability, and equitable solutions — putting power back where it belongs: with the people.</strong>
+           <br><br> <strong>Included with any Hosting package</strong></p>
+          <div class="crm-video-container">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100076153659566%2Fvideos%2F981188963871990%2F&show_text=false&width=560&t=0" 
+                  width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" 
+                  allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true">
+              </iframe>
+          </div>
+      </div>
+      
+      <script>
+          // Add fade-in animation on load
+          document.addEventListener('DOMContentLoaded', () => {
+              const crmSection = document.getElementById('casesSection');
+              crmSection.classList.add('fade-in');
+          });
+      </script>
+      </section>
+      <section id="section7">
+        <div class="crm-section" id="feesSection">
+          
+          <h1 class="crm-heading"><strong>𝗪𝗵𝘆 𝗴𝗶𝘃𝗲 𝘂𝗽 𝘆𝗼𝘂𝗿 𝗵𝗮𝗿𝗱-𝗲𝗮𝗿𝗻𝗲𝗱 𝗿𝗲𝘃𝗲𝗻𝘂𝗲?</strong></h1>
+          <p class="crm-text">Shopify takes up to 2% in platform fees on every transaction. At eZ-Commerce Solutions, we believe your success shouldn’t cost you extra. Discover how we do it better.
+           <br><br> <strong>Included with any Hosting package</strong></p>
+          <div class="crm-video-container">
+              <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100076153659566%2Fvideos%2F2809255802586125%2F&show_text=false&width=560&t=0" 
+                  width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" 
+                  allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true">
+              </iframe>
+          </div>
+      </div>
+      
+      <script>
+          // Add fade-in animation on load
+          document.addEventListener('DOMContentLoaded', () => {
+              const crmSection = document.getElementById('feesSection');
+              crmSection.classList.add('fade-in');
+          });
+      </script>
+      </section>
+      <section id="section8">
+        <h2>Conclusion</h2>
+       In today's digital landscape, the opportunities for online wealth creation are abundant. From freelancing and affiliate marketing to online trading and content creation, individuals have various methods to explore and leverage their skills and passions. While success requires dedication, strategic planning, and continuous learning, the potential rewards are worth the effort. Whether you're looking for instant payouts or long-term financial stability, the online realm offers avenues for individuals to build their brand, make money, and achieve their financial goals from the comfort of their homes.
+    <br><br>
+    Remember, the key to success lies in finding the right method that aligns with your interests, skills, and goals. So, take the leap, embrace the digital landscape, and embark
+    
+    on your journey towards online wealth creation.
+   <br><br>
+    Work online, get paid instantly. Earn online money by typing. Quick ways to make money. Earn money from home UK. How to earn money fast. Generate money online. Earn money online UK. Free money UK. These are the potential avenues to explore, each with its unique characteristics and benefits.
+   
+      </section>
     </div>
 
-    <h2 class = "stitle">Keep up to date </h1>
-    <br><br>
-    <h4 class = "stitle3">Crypto & Non-fungible Tokens(NFTs)</h4>
-        <p class = "border" style="padding:25px; margin: auto; max-width: fit-content;"><br>With the increasing popularity of Cryptocurrencies amongst consumers, business are now taking the step to implement
-        <br><br>
-        methods to recieve payment in the form of a specific Cryptocurrency.
-        <br><br><br>
-        NFT's are one way in which Blockchain technology has been integrated in to a new industry.
-        We can help clients 
-        <br><br>
-        'mint' NFTs, a form of virtual property that is used by artists to
-        verifiably sell their original work.<br><br>
-        </p>
-    <br>
-    <p class = "border2">Expect to see news and information related to what we've accomplished so far
-    <br>
-    (Relavent information)
-    </p>
 
-    <br>
-    <a class = "border2" href="contact.html" >Contact</a>
+
+
+
+<article>
+
+      <section class="article-section">
+        <h2>Understanding Blockchain</h2>
+      <p>In today's dynamic economic landscape, a transformative shift is underway – one that redefines the very essence of corporate responsibility and accountability. As businesses pivot from traditional shareholder-centric models towards embracing the principles of stakeholder capitalism, innovative technologies emerge as indispensable tools in driving this transition forward. At eZ-Net, we recognize the pivotal role of blockchain technology in catalyzing this journey towards a more inclusive and sustainable future.</p>
+      <section class="features">
+        <div class="feature-box">
+          <img class = "feature-image"  src="images/smartcontract.jpeg" alt="Tools selection"></img>
+          <h2>Smart Contracts</h2>
+          <p>Secure immutable agreements run on blockcahin networks</p>
+        </div>
+        <div class="feature-box">
+          <img class = "feature-image"  src="images/web3.jpeg" alt="Tools selection"></img>
+          <h2>Web 3.0</h2>
+          <p>Decentralization, privacy, and user control over data</p>
+        </div>
+        </section>
+        <section id ="ArrowShow" class="article-section article-light">
+              <p>Blockchain, at its core, represents a paradigm shift in how we conceive of trust, transparency, and governance in economic systems. By leveraging decentralized ledgers and smart contracts, blockchain offers a secure, immutable, and transparent platform for recording transactions and enforcing agreements. This foundational architecture not only enhances the integrity of financial transactions but also fosters a culture of accountability and fairness across organizational boundaries.        </p>
+          <section class="features">
+            <div class="feature-box">
+             <img class = "feature-image"  src="images/blockchainconnect.jpeg" alt="Tools selection"></img>
+             <h2>Interoperability</h2>
+             <p> Interconnected ecosystem of decentralized applications and protocols</p>
+            </div>
+         <div class="feature-box">
+            <img class = "feature-image"  src="images/nft2.jpeg" alt="Tools selection"></img>
+            <h2>Tokenization</h2>
+            <p>Converting rights to an asset into a token on a blockchain</p>
+         </div>
+      </section>
+        </section>
+        <section class="article-section">
+        <p>At the heart of stakeholder capitalism lies the recognition that businesses must serve a broader spectrum of interests beyond mere shareholder value. Blockchain technology aligns seamlessly with this ethos by democratizing access to economic opportunities and empowering diverse stakeholders. Through tokenization and fractional ownership, blockchain facilitates greater inclusivity, allowing individuals from all walks of life to participate in wealth creation and decision-making processes.</p>
+        </section>
+        <h3>Blockchain in Governance</h3>
+        </section>
     
-        <script>
-        function myFunction1() {
-          var x = document.getElementById("myTopnav");
-          if (x.className === "topnav") {
-            x.className += " responsive";
-          } else {
-            x.className = "topnav";
+  
+
+        <section class="article-section">
+        <p>Moreover, blockchain's decentralized governance structures offer a blueprint for fostering collaboration and consensus-building among stakeholders. By distributing decision-making authority across a network of participants, blockchain mitigates the risks of centralized control and promotes a more equitable distribution of power within organizations. This democratization of governance not only enhances transparency but also enhances the resilience and adaptability of economic systems in the face of evolving challenges.</p>
+  
+        <section class="features">
+          <div class="feature-box">
+            <img class = "feature-image"  src="images/inclusivity.jpeg" alt="Tools selection"></img>
+            <h2>Decentralized</h2>
+            <p>Distribution of control and decision-making across nodes</p>
+         </div>
+          <div class="feature-box">
+            <img class = "feature-image"  src="images/immutable.jpeg" alt="Tools selection"></img>
+            <h2>Immutable</h2>
+             <p>Providing a high level of trust and integrity</p>
+          </div>
+
+      </section>
+
+</section>
+
+</section>
+<section class="article-section article-light"> 
+  <h3>Stay ahead of the curve</h3> 
+  <p>As we embark on this transformative journey towards stakeholder capitalism, it is imperative that we harness the full potential of blockchain technology to realize our shared vision of a more inclusive and sustainable future. At eZ-Net, we are committed to pioneering innovative blockchain solutions that empower stakeholders, foster trust, and drive positive social and economic change. Together, let us embrace the promise of blockchain and chart a course towards a brighter tomorrow for all.</p>
+  
+</section>
+
+</section>
+
+</article>
+          
+            <!-- insert section transition video here -->
+
+        <div class="ai-header">
+          <h2 class="stitlenews" id = "ai-section">Unlocking Potential: How AI Empowers Small Businesses</h2>
+          <video class="news-video" src="video/hex.mov" autoplay loop ></video>
+        </div>
+          <article>
+      
+            <section class="article-section" >
+              <h3>The Power of Custom Artificial Intelligence</h3>
+            <p>At eZ-commerce Solutions, we're not just about building websites; we're about empowering businesses to thrive in the digital landscape. Today, we're excited to shine a spotlight on the transformative power of Artificial Intelligence (AI) and its profound impact on small businesses. In an era where innovation is key to staying ahead, AI has emerged as a game-changer for businesses of all sizes. Here's how it's leveling the playing field and propelling small businesses to new heights:</p>
+            <section class="features3">
+              <div class="feature-box">
+                <video class = "feature-video"  src="video/personal2.mp4" alt="Tools selection" autoplay loop></video>
+                <h2>Personalized Experiences </h2>
+                <p>AI enables small businesses to deliver personalized experiences to their customers, fostering stronger connections and driving engagement. Whether it's tailoring product recommendations or customizing communication, AI empowers you to meet the unique needs of each customer.</p>
+              </div>
+              <div class="feature-box">
+                <video class = "feature-video"  src="video/data.mov" alt="Tools selection" autoplay loop></video>
+                <h2>Data Insights</h2>
+                <p>With AI-powered analytics, small businesses can unlock valuable insights from their data. From understanding customer behavior to predicting market trends, AI equips businesses with the knowledge they need to make informed decisions and fuel growth.</p>
+              </div>
+            </section>
+          </section></h3>
+              <p>        </p>
+              <section class="features3">
+                <div class="feature-box">
+                  <video class = "feature-video"  src="video/chatbot.mov" alt="Tools selection" autoplay loop></video>
+                  <h2>Efficiency and Automation</h2>
+                  <p>Time is a precious commodity for small businesses. AI streamlines processes and automates repetitive tasks, freeing up time for entrepreneurs to focus on innovation and strategic initiatives. From automating customer support to optimizing inventory management, AI enhances efficiency across all aspects of business operations.</p>
+                </div>
+                <div class="feature-box">
+                  <video class = "feature-video"  src="video/compete.mov" alt="Tools selection" autoplay loop></video>
+                  <h2>Competitive Edge</h2>
+                  <p>By harnessing the power of AI, small businesses can gain a competitive edge in the digital marketplace. Whether it's through targeted marketing campaigns, enhanced product recommendations, or optimized pricing strategies, AI empowers businesses to stand out and capture the attention of their target audience.</p>
+                </div>
+              </section>
+            </section>
+          </section><section class="article-section">
+          <p>At eZ-commerce Solutions, we're committed to democratizing technology and providing small businesses with the tools they need to succeed. From AI-driven website optimization to intelligent hosting solutions, we're here to help businesses unleash their full potential in the digital age.</p>
+        </section>
+        </section>
+      </section></h3>
+      </section>
+      </section>
+      </article>
+      
+<!-- <div class="opportunity-section" style="position: relative; overflow: hidden;">
+    <canvas id="background-particles2"></canvas>
+    <div class="stitle42" id="opportunities">
+        
+    </div>
+    <p>Exploring Lucrative Online Opportunities</p> -->
+
+
+            <!-- <button id="openChatButton" class="chat-button">Open Chat</button>
+
+    <div id="chatContainer" class="hidden">
+        <div id="chatMessages"></div>
+        <input type="text" id="userInput" placeholder="Type a message...">
+        <button id="sendMessage">Send</button>
+    </div> -->
+<!--     
+        <div class="section-bar" id="section-bar" >
+        
+          <ul class ="section-list">
+            
+            <li onclick="toggleSection('section2')">Freelancing</li>
+            <li onclick="toggleSection('section3')">Marketing</li>
+            <li onclick="toggleSection('section4')">Trading</li>
+            <li onclick="toggleSection('section5')">E-commerce</li>
+            <li onclick="toggleSection('section6')">Tutoring</li>
+            <li onclick="toggleSection('section7')">Content</li>
+            
+          </ul>
+        </div>
+      </div>
+          <div class="sections">
+            
+            <section id="section1" >
+              <h2>Methods to Create Wealth from the Comfort of Your Home</h2>
+              
+            </section>
+            
+            <section id="section2" class="fade-in">
+              <h2>Freelancing</h2>Freelancing has emerged as a popular avenue for individuals with specific skills to monetize their expertise. 
+<br><br>
+              Whether you're a writer, graphic designer, programmer, or marketer, freelancing platforms provide a platform for you to showcase your talents and connect with clients seeking your services. 
+<br><br>
+              From content creation to web development, freelancing offers the flexibility to work on diverse projects while earning money on a per-project or hourly basis.
+            
+            </section>
+            <section id="section3">
+              <h2>Affiliate Marketing</h2>
+              Affiliate marketing has gained significant traction as a viable online business model. 
+              <br><br>
+              By partnering with established companies and promoting their products or services, you can earn commissions for each sale or lead generated through your unique referral links.
+              <br><br>
+              With a well-executed marketing strategy and the ability to attract and engage an audience, affiliate marketing can be a lucrative source of passive income.
+       
+            </section>
+            <section id="section4" c>
+              <h2>Online Trading</h2>
+              For those interested in the world of finance and investments, online trading provides a platform to capitalize on market fluctuations.
+              <br><br>
+              Whether it's stocks, forex, cryptocurrencies, or commodities, online trading platforms offer tools and resources to analyze market trends and make informed trading decisions.
+              <br><br>
+              While it requires learning and experience, online trading has the potential for significant returns if approached with discipline and a sound trading strategy.
+        
+            </section>
+            <section id="section5">
+              <h2>Selling Products on e-commerce platforms</h2>
+              The rise of e-commerce giants like Amazon, eBay, and Etsy has opened up opportunities for individuals to sell products online.
+              <br><br>
+              Whether you create handmade crafts, source unique items, or leverage dropshipping models, these platforms provide a vast customer base and robust infrastructure to reach a global audience.
+              <br><br>
+              With effective product listings, marketing strategies, and customer service, selling products online can be a profitable venture.
+       
+            </section>
+            <section id="section6">
+              <h2>Online Teaching/Tutoring</h2>
+             If you have expertise in a particular subject or skill, online teaching or tutoring can be a rewarding way to share your knowledge and earn money.
+             <br><br>
+             Platforms dedicated to online learning connect educators with students worldwide, offering virtual classrooms and interactive tools for effective teaching.
+             <br><br>
+             Whether you teach languages, academic subjects, or specialized skills like music or coding, online teaching provides flexibility and the opportunity to impact learners globally.
+        
+            </section>
+            <section id="section7">
+              <h2>Content Creation</h2>
+              With the exponential growth of online content consumption, content creation has become a viable pathway to wealth creation.
+              <br><br>
+              Whether it's blogging, vlogging, podcasting, or creating engaging social media content, platforms like YouTube, WordPress, and social media networks allow individuals to monetize their creativity and build a loyal following.
+              <br><br>
+              By offering valuable information, entertainment, or insights, content creators can generate income through ad revenue, brand partnerships, sponsorships, and crowdfunding.
+        
+            </section>
+            <section id="section8">
+              <h2>Conclusion</h2>
+             In today's digital landscape, the opportunities for online wealth creation are abundant. From freelancing and affiliate marketing to online trading and content creation, individuals have various methods to explore and leverage their skills and passions. While success requires dedication, strategic planning, and continuous learning, the potential rewards are worth the effort. Whether you're looking for instant payouts or long-term financial stability, the online realm offers avenues for individuals to build their brand, make money, and achieve their financial goals from the comfort of their homes.
+          <br><br>
+          Remember, the key to success lies in finding the right method that aligns with your interests, skills, and goals. So, take the leap, embrace the digital landscape, and embark
+          
+          on your journey towards online wealth creation.
+         <br><br>
+          Work online, get paid instantly. Earn online money by typing. Quick ways to make money. Earn money from home UK. How to earn money fast. Generate money online. Earn money online UK. Free money UK. These are the potential avenues to explore, each with its unique characteristics and benefits.
+         
+            </section>
+          </div> -->
+ <!-- Contact Section -->
+ <footer class="contact-section">
+  
+  <div class="contact-container">
+    
+      <div class="contact-info">
+          <h2>Contact Us</h2>
+          <div class="contact-item">
+          <p><i class="fas fa-map-marker-alt"></i> Ashton, Manchester, United Kingdom</p>
+          </div>
+          <div class="contact-item">
+          <p><i class="fas fa-phone-alt"></i><span><a href="tel:+07803361432"> 07803361432</a></p></span>
+          </div>
+          <div class="contact-item">
+          <p><i class="fas fa-envelope"></i><span><a href="mailto:contact@eZ-CommerceSolutions.co.uk"> contact@eZ-CommerceSolutions.co.uk</a></p></span>
+          </div>
+        </div>
+
+<div class="social-media">
+<h2>Follow Us</h2>
+<div class="social-icons">
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-linkedin-in"></i></a>
+</div>
+</div>
+
+
+<div class="newsletter">
+  <h2>Newsletter</h2>
+  <p>Subscribe to our newsletter for updates and offers.</p>
+  <form action="#">
+      <input type="email" placeholder="Your Email" required>
+      <button type="submit">Subscribe</button>
+  </form>
+</div>
+</div>
+</footer>
+<script>
+  var isButtonVisible = false; // Track visibility of button
+  var isArrowVisible = false; // Track visibility of arrow
+
+  // Function to scroll back to top smoothly
+  function backToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Function to show/hide back to top button and arrow based on scroll position
+  window.onscroll = function() {
+    var backToTopBtn = document.getElementById("backToTopBtn");
+    var backToTopArrow = document.getElementById("backToTopArrow");
+    var firstSectionHeight = document.getElementById("ArrowShow").offsetHeight;
+
+    if (document.body.scrollTop > firstSectionHeight || document.documentElement.scrollTop > firstSectionHeight) {
+      if (!isButtonVisible || !isArrowVisible) {
+        fadeIn(backToTopBtn); // Fade in button
+        fadeIn(backToTopArrow); // Fade in arrow
+        isButtonVisible = true;
+        isArrowVisible = true;
+      }
+    } else {
+      if (isButtonVisible || isArrowVisible) {
+        fadeOut(backToTopBtn); // Fade out button
+        fadeOut(backToTopArrow); // Fade out arrow
+        isButtonVisible = false;
+        isArrowVisible = false;
+      }
+    }
+
+    // Scroll functionality for header and footer
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("myTopnav").style.top = "-60px";
+    } else {
+      document.getElementById("myTopnav").style.top = "0px";
+    }
+    if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
+      document.getElementById("ffooter").style.bottom = "0px";
+    } else {
+      document.getElementById("ffooter").style.bottom = "-50px";
+    }
+  };
+
+  // Function to fade in element
+  function fadeIn(element) {
+    var opacity = 0;
+    element.style.display = "block";
+    var fadeInInterval = setInterval(function() {
+      if (opacity < 1) {
+        opacity += 0.1;
+        element.style.opacity = opacity;
+      } else {
+        clearInterval(fadeInInterval);
+      }
+    }, 30);
+  }
+
+  // Function to fade out element
+  function fadeOut(element) {
+    var opacity = 1;
+    var fadeOutInterval = setInterval(function() {
+      if (opacity > 0) {
+        opacity -= 0.1;
+        element.style.opacity = opacity;
+      } else {
+        clearInterval(fadeOutInterval);
+        element.style.display = "none";
+      }
+    }, 30);
+  }
+</script>
+
+<script>
+  const canvas = document.getElementById('background-particles2');
+  const ctx = canvas.getContext('2d');
+  
+  // Get the dimensions of the merchant fees section
+  const merchantSection = document.querySelector('.opportunity-section');
+  
+  // Set the canvas size based on the section dimensions
+  function setCanvasSize() {
+      canvas.width = merchantSection.offsetWidth;
+      canvas.height = merchantSection.offsetHeight;
+  }
+  
+  // Adjust canvas size when the window is resized
+  window.addEventListener('resize', function() {
+      setCanvasSize();
+      initParticles(); // Reinitialize particles on resize
+  });
+  
+  // Particle creation logic
+  let particlesArray = [];
+  
+  class Particle {
+      constructor(x, y, directionX, directionY, size, color) {
+          this.x = x;
+          this.y = y;
+          this.directionX = directionX;
+          this.directionY = directionY;
+          this.size = size;
+          this.color = color;
+      }
+      draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+      }
+      update() {
+          if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+              this.directionX = -this.directionX;
           }
+          if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+              this.directionY = -this.directionY;
+          }
+          this.x += this.directionX;
+          this.y += this.directionY;
+          this.draw();
+      }
+  }
+  
+  function initParticles() {
+      particlesArray = [];
+      const numberOfParticles = (canvas.width * canvas.height) / 5000;
+      for (let i = 0; i < numberOfParticles; i++) {
+          const size = Math.random() * 3 + 1;
+          const x = Math.random() * (canvas.width - size * 2) + size;
+          const y = Math.random() * (canvas.height - size * 2) + size;
+          const directionX = (Math.random() * 0.4) - 0.2;
+          const directionY = (Math.random() * 0.4) - 0.2;
+          const color = '#e6691e'; // Match the accent color
+          
+          particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+      }
+  }
+  
+  function animateParticles() {
+      requestAnimationFrame(animateParticles);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+      for (let i = 0; i < particlesArray.length; i++) {
+          particlesArray[i].update();
+      }
+  }
+  
+  // Set the initial canvas size and start the particle animation
+  setCanvasSize();
+  initParticles();
+  animateParticles();
+  
+  
+  
+  </script>
+          <script src="myscript.js"></script>
+
+          <script>const lines = document.querySelectorAll('.fade-in');
+
+            lines.forEach((line, index) => {
+              line.style.animationDelay = `${index * .75}s`;
+              line.style.animationDuration = '1s';
+              line.style.animationFillMode = 'forwards';
+              line.style.animationTimingFunction = 'ease-in-out';
+              line.classList.add('fade-in-animation');
+            });</script>
+
+          <script>
+            let activeSection = null;
+
+function toggleSection(sectionId) {
+  const section = document.getElementById(sectionId);
+
+  if (section.classList.contains('open')) {
+    section.classList.remove('open');
+    activeSection = null;
+  } else {
+    if (activeSection) {
+      activeSection.classList.remove('open');
+    }
+    section.classList.add('open');
+    activeSection = section;
+  }
+}
+
+          
+          // function toggleSection(sectionId) {
+          //   var section = document.getElementById(sectionId);
+          //   section.classList.toggle('open');
+          // }
+
+          
+
+          
+          </script>
+        <script>const listItems = document.querySelectorAll('.section-list li');
+
+          listItems.forEach(item => {
+            item.addEventListener('click', () => {
+              if (item.classList.contains('active')) {
+                item.classList.remove('active');
+              } else {
+                // Remove 'active' class from all list items
+                listItems.forEach(li => li.classList.remove('active'));
+                
+                // Add 'active' class to the clicked list item
+                item.classList.add('active');
+              }
+            });
+          });
+          
+          </script>
+        
+        <!-- <article >
+          <section class="border22" style="padding:20px; margin: auto; max-width: 95%;">
+          <h2>Methods to Create Wealth from the Comfort of Your Home</h2>
+        
+          <section>
+           
+          In today's digital age, creating wealth online has become more accessible than ever before. With the right strategies and opportunities, individuals can harness the power of the internet to build their brand and generate income from the comfort of their own homes. In this article, we will explore various methods of online wealth creation that offer potential for financial success. Whether you're looking for quick ways to make money or seeking a sustainable long-term venture, there are options available to suit your goals and aspirations.
+            </p></s<ection>
+        <br>
+        <section>
+          <h2>Freelancing</h2  >
+          Freelancing has emerged as a popular avenue for individuals with specific skills to monetize their expertise. Whether you're a writer, graphic designer, programmer, or marketer, freelancing platforms provide a platform for you to showcase your talents and connect with clients seeking your services. From content creation to web development, freelancing offers the flexibility to work on diverse projects while earning money on a per-project or hourly basis.
+        </section>
+        <br>
+        <section>
+          <h2>Affiliate Marketing</h2>
+          Affiliate marketing has gained significant traction as a viable online business model. By partnering with established companies and promoting their products or services, you can earn commissions for each sale or lead generated through your unique referral links. With a well-executed marketing strategy and the ability to attract and engage an audience, affiliate marketing can be a lucrative source of passive income.
+        </section>
+        <br>
+        <section>
+          <h2>Online Trading</h2>
+          For those interested in the world of finance and investments, online trading provides a platform to capitalize on market fluctuations. Whether it's stocks, forex, cryptocurrencies, or commodities, online trading platforms offer tools and resources to analyze market trends and make informed trading decisions. While it requires learning and experience, online trading has the potential for significant returns if approached with discipline and a sound trading strategy.
+        </section>
+        <br>
+        <section>
+          <h2>Selling Products on e-commerce platforms</h2>
+          The rise of e-commerce giants like Amazon, eBay, and Etsy has opened up opportunities for individuals to sell products online. Whether you create handmade crafts, source unique items, or leverage dropshipping models, these platforms provide a vast customer base and robust infrastructure to reach a global audience. With effective product listings, marketing strategies, and customer service, selling products online can be a profitable venture.
+        </section>
+        <br>
+        <section>
+          <h2>Online Teaching/Tutoring</h2>
+          If you have expertise in a particular subject or skill, online teaching or tutoring can be a rewarding way to share your knowledge and earn money. Platforms dedicated to online learning connect educators with students worldwide, offering virtual classrooms and interactive tools for effective teaching. Whether you teach languages, academic subjects, or specialized skills like music or coding, online teaching provides flexibility and the opportunity to impact learners globally.
+        </section>
+        <br>
+        <section>
+          <h2>Content Creation</h2>
+          With the exponential growth of online content consumption, content creation has become a viable pathway to wealth creation. Whether it's blogging, vlogging, podcasting, or creating engaging social media content, platforms like YouTube, WordPress, and social media networks allow individuals to monetize their creativity and build a loyal following. By offering valuable information, entertainment, or insights, content creators can generate income through ad revenue, brand partnerships, sponsorships, and crowdfunding.
+        </section>
+        <br>
+        <section>
+          <h2>Conclusion</h2>
+          In today's digital landscape, the opportunities for online wealth creation are abundant. From freelancing and affiliate marketing to online trading and content creation, individuals have various methods to explore and leverage their skills and passions. While success requires dedication, strategic planning, and continuous learning, the potential rewards are worth the effort. Whether you're looking for instant payouts or long-term financial stability, the online realm offers avenues for individuals to build their brand, make money, and achieve their financial goals from the comfort of their homes.
+          
+          Remember, the key to success lies in finding the right method that aligns with your interests, skills, and goals. So, take the leap, embrace the digital landscape, and embark
+          
+           on your journey towards online wealth creation.
+          <br><br>
+           Work online, get paid instantly. Earn online money by typing. Quick ways to make money. Earn money from home UK. How to earn money fast. Generate money online. Earn money online UK. Free money UK. These are the potential avenues to explore, each with its unique characteristics and benefits.
+          </section>
+          </article> 
+          <br> -->
+          
+        </p>
+        <!-- <h4 class = "stitle3">Encrypted payment methods - Coming soon!</h4>
+        
+        <p class = "border22" style = "margin:auto">
+          <br>
+          Avoid expensive subscription costs to give you're website payment functionality
+          <br><br>
+          With encrypted payment methods, you give your customers the choice to pay via:
+          <br><br>-PayPal
+          <br>-Credit card 
+          <br>-Debit card 
+          <br><br>
+        </p><br>
+        <div>
+        <div id="smart-button-container">
+          <div style="max-width: 50%; margin:auto;">
+              <div id="paypal-button-container"></div>
+            </div>
+          </div>
+        <script src="https://www.paypal.com/sdk/js?client-id=AYttOrvXxPt5MpySBf2TE1wONF8qmK_Ew1W7Q2ld-kra-zDS8MOJKa4sCnKY3yQyXzoBU10-KSph9kfL&currency=GBP" data-sdk-integration-source="button-factory"></script>
+        <script>
+          function initPayPalButton() {
+            paypal.Buttons({
+              style: {
+                shape: 'rect',
+                color: 'gold',
+                layout: 'vertical',
+                label: 'paypal',
+                
+              },
+      
+              createOrder: function(data, actions) {
+                return actions.order.create({
+                  purchase_units: [{"amount":{"currency_code":"GBP","value":90,"breakdown":{"item_total":{"currency_code":"GBP","value":75},"shipping":{"currency_code":"GBP","value":0},"tax_total":{"currency_code":"GBP","value":15}}}}]
+                });
+              },
+      
+              onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                  alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                });
+              },
+      
+              onError: function(err) {
+                console.log(err);
+              }
+            }).render('#paypal-button-container');
+          }
+          initPayPalButton();
+        </script> -->
+
+
+    
+        <script>// Function to toggle active class on arrow click and show dropdown content
+          function toggleActive(el) {
+              // Toggle 'active2' class for arrow rotation
+              el.classList.toggle('active2');
+              
+              // Find the parent dropdown container
+              var dropdownContainer = el.parentElement;
+              
+              // Toggle 'active3' class for dropdown content display
+              if (dropdownContainer.classList.contains('dropdown')) {
+                  var dropdownContent = dropdownContainer.querySelector('.dropdown-content');
+                  dropdownContent.classList.toggle('active3');
+              }
+          }
+          
+          // Function to close all dropdowns
+          function closeDropdowns() {
+              // Find all dropdown content elements and arrows
+              const dropdownContents = document.querySelectorAll('.dropdown-content');
+              const arrows = document.querySelectorAll('.dropdown .active2');
+              
+              // Remove the 'active3' class from all dropdown content to hide them
+              dropdownContents.forEach((dropdownContent) => {
+                  dropdownContent.classList.remove('active3');
+              });
+              
+              // Remove the 'active2' class from all active arrows to reset arrow state
+              arrows.forEach((arrow) => {
+                  arrow.classList.remove('active2');
+              });
+          }
+          
+          // Function to toggle the navigation menu on burger click
+          function toggleNav() {
+              const nav = document.getElementById("myTopnav");
+              const burger = document.querySelector('.burger'); // Select the burger icon
+          
+              // Toggle nav open/close
+              if (nav.className === "topnav") {
+                  nav.className += " responsive";
+              } else {
+                  nav.className = "topnav";
+                  // Close all dropdowns when the nav closes
+                  closeDropdowns();
+              }
+              
+              // Toggle the burger icon to animate into a cross
+              burger.classList.toggle('toggle');
+          }
+          
+          </script>
+
+<script>const openChatButton = document.getElementById('openChatButton');
+  const chatContainer = document.getElementById('chatContainer');
+  const chatMessages = document.getElementById('chatMessages');
+  const userInput = document.getElementById('userInput');
+  const sendMessageButton = document.getElementById('sendMessage');
+  
+  openChatButton.addEventListener('click', () => {
+      chatContainer.classList.remove('hidden');
+      openChatButton.style.display = 'none';
+  });
+  
+  sendMessageButton.addEventListener('click', () => {
+      const userMessage = userInput.value;
+      if (userMessage.trim() !== '') {
+          appendMessage(userMessage, 'user');
+          // Here you can send the user message to your backend for processing by the GPT-3 model.
+          // Once you receive the response from GPT, you can call appendMessage with the AI's reply.
+          userInput.value = '';
+      }
+  });
+  
+  function appendMessage(message, sender) {
+      const messageElement = document.createElement('div');
+      messageElement.className = `message ${sender}`;
+      messageElement.textContent = message;
+      chatMessages.appendChild(messageElement);
+  }</script>
+
+
+<script>const textElement = document.querySelector('.stitle42');
+
+  function slideInText() {
+    textElement.style.transform = 'translateX(0)';
+  }
+  
+  // Trigger the animation when the page loads or at an appropriate event
+  slideInText();</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.article-section');
+    const fadeInOptions = {
+      threshold: 0.23 // Adjust threshold as needed
+    };
+  
+    const fadeInObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('open');
+          observer.unobserve(entry.target);
         }
-        </script>
+      });
+    }, fadeInOptions);
+  
+    sections.forEach(section => {
+      fadeInObserver.observe(section);
+    });
+  });
+  
+  
+  </script>
 
-
+<!-- <script src="myscript.js"></script> -->
 </body>
 </html>
