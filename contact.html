@@ -1,61 +1,430 @@
 <!DOCTYPE html>
+<!-- Google Fonts -->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Contact eZ-Commerce Solutions</title>
     <link rel="stylesheet" type="text/css" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="logo11.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" alt ="eZ-Commerce solutions UK" href="logo11.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 </head>
 
 <body>
-    <div class="topnav" id="myTopnav" style="top:0px;">
+  <div class="topnav" id="myTopnav" style="top:0px;">
     <div class="fixed-header">
         <div class="container">
             <nav>
-                <a href="index.html"><img src="logow11.png" alt=""></a>
-                <a href="services.html">Services</a>
-                <a href="news.html">News</a>
-                <a href="about.html">About us</a>
+                <a href="index.html"><img src="logow11.png" style="max-width:100%;" alt=""></a>
+                <div class="dropdown">
+                  <a href="services.html" class="dropbtn">Services</a><a class="navarw" onclick="toggleActive(this)">›</a>
+                  <div class="dropdown-content">
+                      <a href="services.html">Web Design</a>
+                      <a href="services.html#hosting-section">Web Hosting</a>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <a href="news.html" class ="dropbtn">News</a><a class="navarw" onclick="toggleActive(this)">›</a>
+                  <div class="dropdown-content">
+                        <a href="news.html">Blockchain Apps</a>
+                        <a href="news.html#opportunities">Opportunities</a>
+                        <a href="news.html#ai-section">The Power of AI</a>
+                        <a onclick="document.getElementById('loginModal').style.display='block'">eZ-Net</a>
+                  </div>
+                  </div>
+                  <div class="dropdown">
+                    <a href="about.html" class ="dropbtn">About us</a><a class="navarw" onclick="toggleActive(this)">›</a>
+                    <div class="dropdown-content">
+                          <a href="about.html">What do we do?</a>
+                          <a href="ESG.html">ESG</a>
+                          <a href="news.html">Meet the Team!</a>
+                          <a href="careers.html">Join eZ-Net</a>
+                    </div>
+                    </div>
                 <a href="contact.html">Get in touch!</a>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction1()">
-                <i class="fa fa-bars"></i>
-                </a>
+                <div class="dropdown " >
+                  <a class="fa fa-user" id="fauser" onclick="toggleActive(this)"></a>
+                  <div class="dropdown-content profile-dropdown">
+                    <a onclick="document.getElementById('loginModal').style.display='block'">Sign in/Register</a>
+                    <a onclick="document.getElementById('loginModal').style.display='block'">eZ-Hub Home</a>
+                    <a onclick="document.getElementById('loginModal').style.display='block'">Support</a>
+                  </div>
+              </div>
+              <a href="javascript:void(0);" class="icon" onclick="toggleNav()">
+                <i class="fa burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </i>
+            </a>
+            
             </nav>
         </div>
-    </div>   
+    </div> 
+</div>  
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <form class="modal-content animate" action="login.php" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('loginModal').style.display='none'" class="closemodal" title="Close Modal">&times;</span>
+      <img src="images/eznet2.png" alt="Avatar" class="avatar">
+    </div>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn">Cancel</button>
+      <button onclick="document.getElementById('registerModal').style.display='block'" class="register">Register</button>
+
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+<!-- Registration Modal -->
+<div id="registerModal" class="modal">
+  <form id="registerForm" class="modal-content animate">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('registerModal').style.display='none'" class="closemodal" title="Close Modal">&times;</span>
+      <img src="images/eznet2.png" alt="Avatar" class="avatar">
+    </div>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="email"><b>Email</b></label>
+      <input type="email" placeholder="Enter Email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+
+      <button type="submit">Register</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+      <div id="errorMessage" style="color:red;"></div>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('registerModal').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
 </div>
 
+<script>
+  document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const formData = new FormData(this);
+      const errorMessage = document.getElementById('errorMessage');
+  
+      fetch('register.php', {
+          method: 'POST',
+          body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.status === 'error') {
+              errorMessage.textContent = data.message;
+          } else {
+              errorMessage.style.color = 'green';
+              errorMessage.textContent = data.message;
+          }
+      })
+      .catch(error => {
+          errorMessage.textContent = 'An error occurred. Please try again later.';
+      });
+  });
+  </script>
 
-    <h2 class = "stitle">Contact us!</h2>
+
+<script>
+// Get the modals
+var loginModal = document.getElementById('loginModal');
+var registerModal = document.getElementById('registerModal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == loginModal) {
+        loginModal.style.display = "none";
+    }
+    if (event.target == registerModal) {
+        registerModal.style.display = "none";
+    }
+}
+</script>
+
+
+<div id ="ffooter" class="fixed-footer" style="overflow: hidden;">
+  <div>Copyright &copy; 2021 eZ-Commerce Solutions
+    <a class = "border4" href="terms.html" target="_blank" rel="noopener noreferrer">T&Cs</a>
+    <a class = "border4" href="ppolicy.html" >Privacy</a>
+    <a class = "border4" href="contact.html" >Contact</a>
+
+  </div>          
+</div>
+
+    <h2 class = "stitle5">Contact us!</h2>
     <br>
     <br>
-    <p class = "border"><br>Please don't hesitate to contact us regarding any queries you might have, fill in the form below:<br><br></p>
+    <!-- <p class = "border"><br>Fill in the form below, let us know a little about your business or plan and we'll be in touch to move it forward:<br><br></p> -->
     <br>
-    
+
 <div class="container2">
+  <a href="index.html"><img src="images/mainlogo.png" alt="Image"  class="top-right-image"></a>
         <form action="handler.php" method="post" id="reused_form">
         
-          <label for="name">First Name:</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="First name" required>
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Full name" required>
       
-          <label for="lname">Last Name:</label>
-          <input type="text" id="lname" name="lastname" placeholder="Last name">
+          <label for="lname">Website Name:</label>
+          <input type="text" class="form-control" id="lname" name="lastname" placeholder="Website or Business name" required>
       
           <label for="email">Email:</label>
           <input type="text" class="form-control"id="email" name="email"placeholder= "Example@gmail.com" required>
           </select>
+
+          <div class="form-group">
+            <label for="businessType">Website Type</label>
+            <select id="businessType" name="businessType" required>
+              <option value="">Select Website  Type</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="Corporate">Corporate</option>
+              <option value="Portfolio">Portfolio</option>
+              <option value="Blog">Blog</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="package">Design Package:</label>
+            <select id="package" name="package" required>
+              <option value="">Select Package</option>
+              <option value="Essentials">Essentials</option>
+              <option value="Essentials-Plus">Essentials+</option>
+              <option value="Pro">Pro</option>
+              <option value="Pro-Plus">Pro+</option>
+              <option value="Unsure">Unsure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="title-label">Hosting Package:</label>
+        
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="web_hosting[]" id="checkboxEssentials" value="Essentials">
+                    Essentials
+                </label>
+        
+                <label>
+                    <input type="checkbox" name="web_hosting[]" id="checkboxAdvanced"  value="Advanced">
+                    Advanced
+                </label>
+        
+                <label>
+                    <input type="checkbox" name="web_hosting[]" id="checkboxPremium" value="Premium">
+                    Premium
+                </label>
+            </div>
+        </div>
+        
       
-          <label for="comments">Subject</label>
-          <textarea class="form-control" id="comments" name="comments" placeholder="Write something.." maxlength="6000" rows="7"></textarea>
+          <label for="comments">Website Preferences:</label>
+          <textarea id="comments" name="comments" placeholder="Write something.." maxlength="6000" rows="7" required></textarea>
       <div class ="row">
-          <button type="submit" class="btn">Post</button>
-    </div>
-</div>
+        <label class="sagreement">
+          <p><input type="checkbox" id="terms_agreed" required>
+          I have read the <a href="terms.html"  target="_blank" rel="noopener noreferrer">T&Cs</a>.</p>
+        </label>
+        <label class="sagreement">
+          <p><input type="checkbox" id="agreement" required>
+          I agree to the <a href="javascript:void(0)" onclick="openAgreementModal()">Service Agreement</a>.</p>
+        </label>
+          <button type="submit" value ="submit" class="btn submit">SUBMIT</button>
+           
+          <p id="openEmailButton" class="border5">
+            <i class="fa fa-envelope"></i> contact@ez-commercesolutions.co.uk
+          </p>
 
+          <div id="agreementModal" class="modal">
+            <div class="modal-content">
+                <span class="closemodal" onclick="closeAgreementModal()">&times;</span>
+                <h2>Service Agreement</h2>
+                <div class="agreement-content">
+                    <p><strong>1. Introduction</strong><br>
+                    This Service Agreement ("Agreement") is between eZ-Commerce Solutions ("Provider") and the customer ("Customer") purchasing a website development package and/or web hosting services. By purchasing our services, you agree to the terms and conditions outlined in this Agreement.</p>
+        
+                    <p><strong>2. Service Packages</strong><br>
+                    eZ-Commerce Solutions offers the following website development packages:</p>
+                    <ul>
+                        <li><strong>Essentials (£195):</strong>
+                            <ul>
+                                <li>Website Domain Name</li>
+                                <li>Mobile Responsive</li>
+                                <li>2 months of Web Hosting</li>
+                                <li>Animated Elements</li>
+                                <li>Professional Licensed Images</li>
+                                <li>Creative Call-to-Action (CTA)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Essentials+ (£295):</strong>
+                            <ul>
+                                <li>Includes Essentials Package</li>
+                                <li>2 months of Management</li>
+                                <li>SEO Optimized</li>
+                                <li>Payment Function</li>
+                                <li>Business Email</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pro (£395):</strong>
+                            <ul>
+                                <li>Website Domain Name</li>
+                                <li>Automated Chat Facility</li>
+                                <li>4 months of Web Hosting</li>
+                                <li>Product Catalogue</li>
+                                <li>Toggle Elements</li>
+                                <li>Integrated Contact Form</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pro+ (£495):</strong>
+                            <ul>
+                                <li>Includes Pro Package</li>
+                                <li>4 months of Management</li>
+                                <li>SEO Optimized</li>
+                                <li>Payment Function</li>
+                                <li>Business Email</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>And the following web hosting packages:</p>
+                    <ul>
+                        <li><strong>Hosting Essentials (£12.99/month):</strong>
+                            <ul>
+                                <li>SSL Certificate Included</li>
+                                <li>24/7 Server Monitoring</li>
+                                <li>Regular Backups</li>
+                                <li>Security Updates</li>
+                                <li>Technical Support</li>
+                                <li>99.9% Uptime Guarantee</li>
+                            </ul>
+                        </li>
+                        <li><strong>Hosting Advanced (£29.99/month):</strong>
+                            <ul>
+                                <li>All features of Hosting Essentials +</li>
+                                <li>Malware Scanning and Removal</li>
+                                <li>Performance Optimization</li>
+                                <li>Database Management</li>
+                                <li>Monthly Analytics Report</li>
+                                <li>Premium Support</li>
+                            </ul>
+                        </li>
+                        <li><strong>Hosting Premium (£49.99/month):</strong>
+                            <ul>
+                                <li>All features of Hosting Advanced +</li>
+                                <li>Customized Security Solutions</li>
+                                <li>Advanced Performance Monitoring</li>
+                                <li>Dedicated Server Resources</li>
+                                <li>Priority Technical Support</li>
+                                <li>Enhanced Data Backup and Recovery</li>
+                            </ul>
+                        </li>
+                    </ul>
+        
+                    <p><strong>3. Website Development Timeline</strong><br>
+                    Simple websites will take up to 4 weeks to complete.<br>
+                    Advanced designs may take up to 8 weeks.<br>
+                    These timeframes are estimates and may vary based on project scope and complexity. They are not considered binding.</p>
+        
+                    <p><strong>4. Scope of Work</strong><br>
+                    eZ-Commerce Solutions agrees to meet the Customer's website requirements as specified in the chosen package. Any requests outside the scope of the selected package may incur additional charges.</p>
+        
+                    <p><strong>5. Payment and Refund Policy</strong><br>
+                    All payments are final. No refunds will be issued once a payment has been made.<br>
+                    Customers purchasing a hosting package will be billed monthly.</p>
+        
+                    <p><strong>6. Cancellation Policy</strong><br>
+                    Customers may cancel their hosting subscription at any time. No refunds will be provided for the unused portion of the hosting period.</p>
+        
+                    <p><strong>7. Customer Responsibilities</strong><br>
+                    eZ-Commerce Solutions will typically manage the content, images, and other materials required for the website. However, in some cases, the Customer may be requested to provide specific content, images, or other materials necessary for the website development.</p>
+        
+                    <p><strong>8. Intellectual Property</strong><br>
+                    For Customers purchasing a website development package, ownership of the intellectual property rights to the custom content created by eZ-Commerce Solutions for their website will be transferred to the Customer upon full payment.<br>
+                    For Customers benefiting from promotions offering free websites with hosting packages, eZ-Commerce Solutions retains ownership of the website.<br>
+                    eZ-Commerce Solutions retains the right to use the developed website and its components for promotional purposes.</p>
+        
+                    <p><strong>9. Limitation of Liability</strong><br>
+                    eZ-Commerce Solutions is not liable for any indirect, incidental, special, or consequential damages arising from the use of our services.<br>
+                    Our total liability under this Agreement, including for claims related to performance or breach, is limited to the amount paid by the Customer for the service in question.</p>
+        
+                    <p><strong>10. Termination</strong><br>
+                    eZ-Commerce Solutions reserves the right to terminate this Agreement if the Customer fails to comply with any terms of this Agreement.<br>
+                    Termination will not affect any rights or liabilities that have accrued prior to termination.</p>
+        
+                    <p><strong>11. Governing Law</strong><br>
+                    This Agreement is governed by and construed in accordance with the laws of the jurisdiction in which eZ-Commerce Solutions operates.</p>
+        
+                    <p><strong>12. Amendments</strong><br>
+                    eZ-Commerce Solutions reserves the right to amend this Agreement at any time. Any amendments will be effective immediately upon posting on our website or notification to the Customer.</p>
+        
+                    <p>By proceeding with the purchase, the Customer acknowledges that they have read, understood, and agreed to the terms and conditions of this Service Agreement.</p>
+        
+                    <p><strong>Contact Information</strong><br>
+                    For any questions or concerns regarding this Agreement, please contact eZ-Commerce Solutions at [contact information].</p>
+                </div>
+                <button onclick="closeAgreementModal()">Close</button>
+            </div>
+        </div>
 
-        </form>
+          <script>
+            function selectColor(element) {
+                const maxSelection = 3;
+                const selectedColors = document.querySelectorAll('.color-block.selected');
+        
+                if (element.classList.contains('selected')) {
+                    element.classList.remove('selected');
+                } else {
+                    if (selectedColors.length < maxSelection) {
+                        element.classList.add('selected');
+                    } else {
+                        alert('You can select up to 3 colors only.');
+                        return;
+                    }
+                }
+        
+                const selected = Array.from(document.querySelectorAll('.color-block.selected'))
+                    .map(el => el.getAttribute('data-color'));
+                document.getElementById('selectedColors').value = selected.join(',');
+            }
+        </script>
+        <script>function openAgreementModal() {
+          document.getElementById('agreementModal').style.display = 'block';
+        }
+        
+        function closeAgreementModal() {
+          document.getElementById('agreementModal').style.display = 'none';
+        }</script>
+    <script>
+    document.getElementById('openEmailButton').addEventListener('click', function() {
+        var emailAddress = document.querySelector('.border5').textContent;
+        var emailLink = 'mailto:' + emailAddress;
+        
+        // Open the default email client with the pre-filled email address
+        window.location.href = emailLink;
+    });
+    </script>
+  </div>
+
+  
+
         
     <div id="success_message" style="width:100%; height:100%; display:none; ">
         <h3>Posted your feedback successfully!</h3>
@@ -66,16 +435,242 @@
                 Sorry there was an error sending your form.
       </div>
       
-      <div class="fixed-footer">
-        <div class="container">Copyright &copy; 2021 E-Commerce Solutions</div>        
-    </div>
-
-
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var selectedCheckbox = urlParams.get('selectedCheckbox');
+    
+            if (selectedCheckbox) {
+                var checkbox = document.getElementById(selectedCheckbox);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            }
+        });
+    </script>
+    
+    
+  
     <br>
-    <p class = "border"><br>Investing in advertisement? Select your preferred payment method to secure an advertising boost for your business today!<br>
-    <br>Please complete the form above, let us know a little about your business or plan and we'll be in touch to move it forward<br><br></p>
+    
+
+    <!-- <p class = "border"><br>Investing in advertisement? Select your preferred payment method to secure an advertising boost for your business today!<br>
+    <br>Please complete the form above, let us know a little about your business or plan and we'll be in touch to move it forward<br><br></p> -->
+        </form>
+    </div>
+    <div>
+      <div class="faq-section" id="faq">
+        <canvas id="background-particles3"></canvas>
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-card">
+                <h3 class="faq-question"><i class="fas fa-clock"></i> How long does it take to build a website?</h3>
+                <p class="faq-answer">The timeline for website development typically ranges from 2 to 4 weeks, depending on the project's complexity.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-card">
+                <h3 class="faq-question"><i class="fas fa-credit-card"></i> What are your merchant fees?</h3>
+                <p class="faq-answer">We proudly charge 0% additional merchant fees beyond the standard payment system fees.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-card">
+                <h3 class="faq-question"><i class="fas fa-money-check-alt"></i> When do I need to make a payment?</h3>
+                <p class="faq-answer">Payment is only required after you've reviewed and approved the first draft of your website.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-card">
+                <h3 class="faq-question"><i class="fas fa-paint-brush"></i> Can you help with branding?</h3>
+                <p class="faq-answer">Yes, we specialize in creating brand logos, graphics, and tailored content as needed.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-card">
+                <h3 class="faq-question"><i class="fas fa-server"></i> What hosting options do you offer?</h3>
+                <p class="faq-answer">We offer a range of hosting plans designed to meet your specific needs, guaranteeing both reliability and optimal performance.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-card">
+                <h3 class="faq-question"><i class="fas fa-life-ring"></i> Do you provide ongoing support?</h3>
+                <p class="faq-answer">Yes, we offer ongoing support to ensure your website runs smoothly and is always up to date.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-card">
+                <h3 class="faq-question"><i class="fas fa-edit"></i>Can I update my website myself?</h3>
+                <p class="faq-answer">Currently, we handle updates for you, but we're developing a user-friendly content management system that will empower you to manage your website effortlessly in the future.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-card">
+                <h3 class="faq-question"><i class="fas fa-headset"></i> What type of support can I expect after my website goes live?</h3>
+                <p class="faq-answer">We offer comprehensive support to ensure your website operates seamlessly and stays current, addressing any concerns you might have.</p>
+            </div>
+        </div>
+      </div>
+    
+    
+    <script>
+      document.querySelectorAll('.faq-question').forEach(question => {
+          question.addEventListener('click', () => {
+              const faqItem = question.parentElement;
+              const answer = faqItem.querySelector('.faq-answer');
+              faqItem.classList.toggle('active');
+  
+              if (faqItem.classList.contains('active')) {
+                  answer.style.maxHeight = answer.scrollHeight + 'px'; // Set max-height to the scroll height of the answer
+                  answer.style.opacity = '1'; // Make the answer visible
+              } else {
+                  answer.style.maxHeight = '0'; // Reset max-height to 0
+                  answer.style.opacity = '0'; // Hide the answer
+              }
+          });
+      });
+  </script>
+  
+  
+  <script>
+    const canvas = document.getElementById('background-particles3');
+    const ctx = canvas.getContext('2d');
+    
+    // Get the dimensions of the merchant fees section
+    const merchantSection = document.querySelector('.faq-section');
+    
+    // Set the canvas size based on the section dimensions
+    function setCanvasSize() {
+        canvas.width = merchantSection.offsetWidth;
+        canvas.height = merchantSection.offsetHeight;
+    }
+    
+    // Adjust canvas size when the window is resized
+    window.addEventListener('resize', function() {
+        setCanvasSize();
+        initParticles(); // Reinitialize particles on resize
+    });
+    
+    // Particle creation logic
+    let particlesArray = [];
+    
+    class Particle {
+        constructor(x, y, directionX, directionY, size, color) {
+            this.x = x;
+            this.y = y;
+            this.directionX = directionX;
+            this.directionY = directionY;
+            this.size = size;
+            this.color = color;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+        update() {
+            if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+                this.directionX = -this.directionX;
+            }
+            if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+                this.directionY = -this.directionY;
+            }
+            this.x += this.directionX;
+            this.y += this.directionY;
+            this.draw();
+        }
+    }
+    
+    function initParticles() {
+        particlesArray = [];
+        const numberOfParticles = (canvas.width * canvas.height) / 9000;
+        for (let i = 0; i < numberOfParticles; i++) {
+            const size = Math.random() * 3 + 1;
+            const x = Math.random() * (canvas.width - size * 2) + size;
+            const y = Math.random() * (canvas.height - size * 2) + size;
+            const directionX = (Math.random() * 0.4) - 0.2;
+            const directionY = (Math.random() * 0.4) - 0.2;
+            const color = '#e6691e'; // Match the accent color
+            
+            particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+        }
+    }
+    
+    function animateParticles() {
+        requestAnimationFrame(animateParticles);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+        }
+    }
+    
+    // Set the initial canvas size and start the particle animation
+    setCanvasSize();
+    initParticles();
+    animateParticles();
+    
+    
+    
+    </script>
+  
+
+
+        <!-- Contact Section -->
+<footer class="contact-section">
+  <div class="contact-container">
+      <div class="contact-info">
+          <h2>Contact Us</h2>
+          <div class="contact-item">
+          <p><i class="fas fa-map-marker-alt"></i> 123 Handyman Lane, Toolsville, TX 75001</p>
+          </div>
+          <div class="contact-item">
+          <p><i class="fas fa-phone-alt"></i><span><a href="tel:+07803361432"> +1 (800) 123-4567</a></p></span>
+          </div>
+          <div class="contact-item">
+          <p><i class="fas fa-envelope"></i><span><a href="mailto:contact@eZ-CommerceSolutions.co.uk"> contact@eZ-CommerceSolutions.co.uk</a></p></span>
+          </div>
+        </div>
+
+<div class="social-media">
+    <h2>Follow Us</h2>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+</div>
+
+
+      <div class="newsletter">
+          <h2>Newsletter</h2>
+          <p>Subscribe to our newsletter for updates and offers.</p>
+          <form action="#">
+              <input type="email" placeholder="Your Email" required>
+              <button type="submit">Subscribe</button>
+          </form>
+      </div>
+  </div>
+</footer></div>
+
+
+    
+<script>function ValidateEmail(email) 
+  {
+   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
+    {
+      return (true)
+    }
+      alert("You have entered an invalid email address!")
+      return (false)
+  }</script>
+    
 
     <script>
+
+      
         $(function()
         {
             function after_form_submitted(data)
@@ -113,7 +708,7 @@
                 }//else
             }
         
-            $('#reused_form').submit(function(e)
+              $('#reused_form').submit(function(e)
               {
                 e.preventDefault();
         
@@ -139,43 +734,6 @@
               });
         });
         </script>
-<div>
-    <div id="smart-button-container">
-        <div style="text-align: center;">
-          <div id="paypal-button-container"></div>
-        </div>
-      </div>
-    <script src="https://www.paypal.com/sdk/js?client-id=AYttOrvXxPt5MpySBf2TE1wONF8qmK_Ew1W7Q2ld-kra-zDS8MOJKa4sCnKY3yQyXzoBU10-KSph9kfL&currency=GBP" data-sdk-integration-source="button-factory"></script>
-    <script>
-      function initPayPalButton() {
-        paypal.Buttons({
-          style: {
-            shape: 'rect',
-            color: 'gold',
-            layout: 'vertical',
-            label: 'paypal',
-            
-          },
-  
-          createOrder: function(data, actions) {
-            return actions.order.create({
-              purchase_units: [{"amount":{"currency_code":"GBP","value":90,"breakdown":{"item_total":{"currency_code":"GBP","value":75},"shipping":{"currency_code":"GBP","value":0},"tax_total":{"currency_code":"GBP","value":15}}}}]
-            });
-          },
-  
-          onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-              alert('Transaction completed by ' + details.payer.name.given_name + '!');
-            });
-          },
-  
-          onError: function(err) {
-            console.log(err);
-          }
-        }).render('#paypal-button-container');
-      }
-      initPayPalButton();
-    </script>
 
 
     <script>
@@ -187,30 +745,196 @@
             x.className = "topnav";
           }
         }
+
         </script>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/8.9.0/firebase-app.js"></script>
+        <!-- <script src="https://www.paypal.com/sdk/js?client-id=AYttOrvXxPt5MpySBf2TE1wONF8qmK_Ew1W7Q2ld-kra-zDS8MOJKa4sCnKY3yQyXzoBU10-KSph9kfL&currency=GBP" data-sdk-integration-source="button-factory"></script>
+        <script>
+          function initPayPalButton() {
+            paypal.Buttons({
+              style: {
+                shape: 'rect',
+                color: 'gold',
+                layout: 'vertical',
+                label: 'paypal',
+                
+              },
+      
+              createOrder: function(data, actions) {
+                return actions.order.create({
+                  purchase_units: [{"amount":{"currency_code":"GBP","value":90,"breakdown":{"item_total":{"currency_code":"GBP","value":75},"shipping":{"currency_code":"GBP","value":0},"tax_total":{"currency_code":"GBP","value":15}}}}]
+                });
+              },
+      
+              onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                  alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                });
+              },
+      
+              onError: function(err) {
+                console.log(err);
+              }
+            }).render('#paypal-button-container');
+          }
+          initPayPalButton();
+        </script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/8.9.0/firebase-analytics.js"></script>
+<div id="smart-button-container">
+  <div style="text-align: center;">
+    <div id="paypal-button-container"></div>
+  </div>
+</div>
+<script src="https://www.paypal.com/sdk/js?client-id=AYttOrvXxPt5MpySBf2TE1wONF8qmK_Ew1W7Q2ld-kra-zDS8MOJKa4sCnKY3yQyXzoBU10-KSph9kfL&enable-funding=venmo&currency=GBP" data-sdk-integration-source="button-factory"></script>
+<script>
+function initPayPalButton() {
+  paypal.Buttons({
+    style: {
+      shape: 'rect',
+      color: 'gold',
+      layout: 'vertical',
+      label: 'paypal',
+      
+    },
 
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{"description":"Network management","amount":{"currency_code":"GBP","value":28.8,"breakdown":{"item_total":{"currency_code":"GBP","value":24},"shipping":{"currency_code":"GBP","value":0},"tax_total":{"currency_code":"GBP","value":4.8}}}}]
+      });
+    },
 
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(orderData) {
+        
+        // Full available details
+        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+        // Show a success message within this page, e.g.
+        const element = document.getElementById('paypal-button-container');
+        element.innerHTML = '';
+        element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+        // Or go to another URL:  actions.redirect('thank_you.html');
+        
+      });
+    },
+
+    onError: function(err) {
+      console.log(err);
+    }
+  }).render('#paypal-button-container');
+}
+initPayPalButton();
+</script> -->
+    <br>
+    <!-- <a class = "border2" href="contact.html" >Contact</a> -->
+
+    <script>// Function to toggle active class on arrow click and show dropdown content
+      function toggleActive(el) {
+          // Toggle 'active2' class for arrow rotation
+          el.classList.toggle('active2');
+          
+          // Find the parent dropdown container
+          var dropdownContainer = el.parentElement;
+          
+          // Toggle 'active3' class for dropdown content display
+          if (dropdownContainer.classList.contains('dropdown')) {
+              var dropdownContent = dropdownContainer.querySelector('.dropdown-content');
+              dropdownContent.classList.toggle('active3');
+          }
+      }
+      
+      // Function to close all dropdowns
+      function closeDropdowns() {
+          // Find all dropdown content elements and arrows
+          const dropdownContents = document.querySelectorAll('.dropdown-content');
+          const arrows = document.querySelectorAll('.dropdown .active2');
+          
+          // Remove the 'active3' class from all dropdown content to hide them
+          dropdownContents.forEach((dropdownContent) => {
+              dropdownContent.classList.remove('active3');
+          });
+          
+          // Remove the 'active2' class from all active arrows to reset arrow state
+          arrows.forEach((arrow) => {
+              arrow.classList.remove('active2');
+          });
+      }
+      
+      // Function to toggle the navigation menu on burger click
+      function toggleNav() {
+          const nav = document.getElementById("myTopnav");
+          const burger = document.querySelector('.burger'); // Select the burger icon
+      
+          // Toggle nav open/close
+          if (nav.className === "topnav") {
+              nav.className += " responsive";
+          } else {
+              nav.className = "topnav";
+              // Close all dropdowns when the nav closes
+              closeDropdowns();
+          }
+          
+          // Toggle the burger icon to animate into a cross
+          burger.classList.toggle('toggle');
+      }
+      
+      </script>
 <script>
 
   window.onscroll = function() {scrollFunction()};
 
   function scrollFunction() {
-   if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
    document.getElementById("myTopnav").style.top = "-50px";
    } else {
    document.getElementById("myTopnav").style.top = "0px";
     }
+    if (document.body.scrollTop > 320 || document.documentElement.scrollTop > 320) {
+   document.getElementById("ffooter").style.bottom = "0px";
+    } else {
+    document.getElementById("ffooter").style.bottom = "-50px";
+     }
+    
    }
+
+   
 </script>
+
+<script>
+  var gateway = new braintree.BraintreeGateway({
+  accessToken: useYourAccessToken
+});
+</script>
+
+
+<!-- Add this script in the head or at the end of the body section -->
+<script>
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+  window.onload = function() {
+    var selectedPackage = getParameterByName('package');
+    if (selectedPackage) {
+      var packageSelect = document.getElementById('package');
+      var options = packageSelect.options;
+      for (var i = 0; i < options.length; i++) {
+        if (options[i].value === selectedPackage) {
+          packageSelect.selectedIndex = i;
+          break;
+        }
+      }
+    }
+  };
+</script>
+<script src="myscript.js"></script>
 
 </body>
 </html>   
