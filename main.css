@@ -1229,7 +1229,7 @@ padding-top: 10px;
 
     @media screen and (max-width: 480px) {
 
-      body { background: url("images/bg1.jpg");
+      body { background: url("bg1.jpg");
       background-size: fill;
       }
 
@@ -1303,7 +1303,7 @@ padding-top: 10px;
     }
   }
 
-      body { background: url("images/bg1.jpg") center;
+      body { background: url("bg1.jpg") center;
         background-size: fill;
       }
 
